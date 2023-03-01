@@ -3,7 +3,7 @@ CREATE TABLE Funcionario (
     cpf VARCHAR2(11) NOT NULL, 
     primeiro_nome varchar2(50),
     sobrenome varchar2(50),
-    salario number(7,2), 
+    salario number(9,2), 
     funcao varchar2(30),
     supervisor VARCHAR2(11), --cpf
 
@@ -37,13 +37,18 @@ CREATE TABLE Modelo_maquina (
 -- NEW
 CREATE TABLE Maquina_montagem (
     codigo_identificacao VARCHAR2(10) NOT NULL, 
-    linha_montagem VARCHAR2(1), -- linhas: 1 a 9
+    linha_montagem INTEGER, -- linhas: 1 a 9
 
     CONSTRAINT maquina_montagem_pkey PRIMARY KEY (codigo_identificacao),
 
     CONSTRAINT maquina_montagem_fkey FOREIGN KEY (codigo_identificacao) REFERENCES Maquina(codigo_identificacao)
 );
 
+-- NEW
+CREATE TABLE Linha_montagem (
+    num_linha INTEGER, -- linhas: 1 a 9
+    capacidade 
+);
 
 CREATE TABLE Telefone_funcionario (
     cpf_funcionario VARCHAR2(11) NOT NULL,
