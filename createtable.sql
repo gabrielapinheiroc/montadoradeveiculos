@@ -1,3 +1,4 @@
+-- OK
 CREATE TABLE Funcionario (
     cpf VARCHAR2(11) NOT NULL, 
     primeiro_nome varchar2(50),
@@ -12,6 +13,27 @@ CREATE TABLE Funcionario (
 
 );
 
+ -- NEW
+CREATE TABLE Maquina (
+    codigo_identificacao VARCHAR2(10) NOT NULL,
+    modelo VARCHAR2(30), -- nomedomodelo
+    data_fabricacao date,
+
+    CONSTRAINT maquina_pkey PRIMARY KEY (codigo_identificacao)
+);
+
+ -- NEW
+CREATE TABLE Modelo_maquina (
+
+    nome_modelo VARCHAR2(30), -- nomedomodelo
+    fabricante VARCHAR2(30), -- nomedofabricante
+
+    CONSTRAINT modelo_maquina_pkey PRIMARY KEY (nome_modelo)
+
+    CONSTRAINT modelo_maquina_fkey FOREIGN KEY (nome_modelo) REFERENCES Maquina(modelo)
+
+);
+
 
 CREATE TABLE Telefone_funcionario (
     cpf_funcionario VARCHAR2(11) NOT NULL,
@@ -20,7 +42,6 @@ CREATE TABLE Telefone_funcionario (
     CONSTRAINT telefone_funcionario_pkey PRIMARY KEY (cpf_funcionario, num_telefone),
 
     CONSTRAINT telefone_funcionario_fkey FOREIGN KEY (cpf_funcionario) REFERENCES Funcionario(cpf)
-
 );
 
 
@@ -45,8 +66,7 @@ CREATE TABLE Peca (
 
     CONSTRAINT Peca_fkey1 FOREIGN KEY (maquina_inspetora) REFERENCES Maquina_controle_qualidade(codigo_identificacao),
     CONSTRAINT Peca_fkey2 FOREIGN KEY (veiculo_recebedor) REFERENCES Veiculo(n_chassi)
-
-)
+);
 
 CREATE TABLE Relatorio_manutencao(
     num_relatorio VARCHAR2(10) NOT NULL, 
