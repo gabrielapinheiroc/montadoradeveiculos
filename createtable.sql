@@ -5,7 +5,7 @@ CREATE TABLE Funcionario (
     sobrenome varchar2(50),
     salario number(7,2), 
     funcao varchar2(30),
-    supervisor VARCHAR2(11),
+    supervisor VARCHAR2(11), --cpf
 
     CONSTRAINT funcionario_pkey PRIMARY KEY (cpf), 
 
@@ -26,7 +26,7 @@ CREATE TABLE Maquina (
 CREATE TABLE Modelo_maquina (
 
     nome_modelo VARCHAR2(30), -- nomedomodelo
-    fabricante VARCHAR2(30), -- nomedofabricante
+    fabricante VARCHAR2(14), -- cnpjfabricante
 
     CONSTRAINT modelo_maquina_pkey PRIMARY KEY (nome_modelo)
 
@@ -48,7 +48,7 @@ CREATE TABLE Telefone_funcionario (
 
 
 CREATE TABLE Revendedora (
-    cnpj VARCHAR2(11) NOT NULL, 
+    cnpj VARCHAR2(14) NOT NULL, 
 
     CONSTRAINT revendedora_pkey PRIMARY KEY (cnpj)
 );
@@ -78,7 +78,7 @@ CREATE TABLE Relatorio_manutencao(
 );
 
 CREATE TABLE Telefone_revendedora (
-    cod_revendedora VARCHAR2(11) NOT NULL,
+    cod_revendedora VARCHAR2(14) NOT NULL, -- cnpjrevendedora
     num_telefone VARCHAR2(13) NOT NULL, -- template -- (81) 8888-8888
 
     CONSTRAINT telefone_revendedora_pkey PRIMARY KEY (cod_revendedora, num_telefone),
@@ -88,7 +88,7 @@ CREATE TABLE Telefone_revendedora (
 );
 
  CREATE TABLE Vender (
-    cnpj_revendedora VARCHAR2(11),
+    cnpj_revendedora VARCHAR2(14),
     cpf_funcionario VARCHAR2(11),
     n_chassi VARCHAR2(17),
     
