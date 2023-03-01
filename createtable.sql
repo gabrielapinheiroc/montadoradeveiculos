@@ -28,10 +28,20 @@ CREATE TABLE Modelo_maquina (
     nome_modelo VARCHAR2(30), -- nomedomodelo
     fabricante VARCHAR2(14), -- cnpjfabricante
 
-    CONSTRAINT modelo_maquina_pkey PRIMARY KEY (nome_modelo)
+    CONSTRAINT modelo_maquina_pkey PRIMARY KEY (nome_modelo),
 
     CONSTRAINT modelo_maquina_fkey FOREIGN KEY (nome_modelo) REFERENCES Maquina(modelo)
 
+);
+
+-- NEW
+CREATE TABLE Maquina_montagem (
+    codigo_identificacao VARCHAR2(10) NOT NULL, 
+    linha_montagem VARCHAR2(1), -- linhas: 1 a 9
+
+    CONSTRAINT maquina_montagem_pkey PRIMARY KEY (codigo_identificacao),
+
+    CONSTRAINT maquina_montagem_fkey FOREIGN KEY (codigo_identificacao) REFERENCES Maquina(codigo_identificacao)
 );
 
 
