@@ -1,4 +1,4 @@
-CREATE SEQUENCE Historico_manutencao_seq
+CREATE SEQUENCE Peca_seq
 START WITH 1 
 INCREMENT BY 1;
 

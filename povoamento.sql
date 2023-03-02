@@ -122,52 +122,52 @@ VALUES
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000001', 'Modelo A', '20-FEB-2018');
+    ('0000000001', 'Modelo A', '20-FEB-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000002', 'Modelo B', '01-APR-2018');
+    ('0000000002', 'Modelo B', '01-APR-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000003', 'Modelo C', '16-JUL-2018');
+    ('0000000003', 'Modelo C', '16-JUL-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000004', 'Modelo D', '12-OCT-2018');
+    ('0000000004', 'Modelo D', '12-OCT-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000005', 'Modelo E', '30-JAN-2018');
+    ('0000000005', 'Modelo E', '30-JAN-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000006', 'Modelo F', '08-AUG-2019');
+    ('0000000006', 'Modelo F', '08-AUG-2019');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000007', 'Modelo G', '23-DEC-2019');
+    ('0000000007', 'Modelo G', '23-DEC-2019');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000008', 'Modelo H', '12-MAY-2020');
+    ('0000000008', 'Modelo H', '12-MAY-2020');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000009', 'Modelo I', '27-SEP-2020');
+    ('0000000009', 'Modelo I', '27-SEP-2020');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('M000000010', 'Modelo J', '03-NOV-2020');
+    ('0000000010', 'Modelo J', '03-NOV-2020');
 
 -- Maquina_controle_qualidade
 INSERT INTO
@@ -177,7 +177,7 @@ INSERT INTO
         limites_tolerancia
     )
 VALUES
-    ('M000000001', 'A', 'B');
+    ('0000000001', 'A', 'B');
 
 INSERT INTO
     Maquina_controle_qualidade (
@@ -186,28 +186,28 @@ INSERT INTO
         limites_tolerancia
     )
 VALUES
-    ('M000000002', 'B', 'A');
+    ('0000000002', 'B', 'A');
 
 -- Historico_manutencao
 INSERT INTO 
     Historico_manutencao (codigo_identificacao_maquina,data_)
 VALUES
-    (Historico_manutencao_seq.NEXTVAL,'27-05-2023');
+    ('0000000001','27-05-2023');
 
 INSERT INTO 
     Historico_manutencao (codigo_identificacao_maquina,data_)
 VALUES
-    (Historico_manutencao_seq.NEXTVAL,'28-05-2023');
+    ('0000000002','28-05-2023');
 
 INSERT INTO 
     Historico_manutencao (codigo_identificacao_maquina,data_)
 VALUES
-    (Historico_manutencao_seq.NEXTVAL,'28-06-2023');
+    ('0000000003','28-06-2023');
 
 INSERT INTO 
     Historico_manutencao (codigo_identificacao_maquina,data_)
 VALUES
-    (Historico_manutencao_seq.NEXTVAL,'24-07-2023');
+    ('0000000004','24-07-2023');
 
 -- Telefone_funcionario
 INSERT INTO
