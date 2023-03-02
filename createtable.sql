@@ -1,6 +1,6 @@
 ALTER SESSION SET NLS_DATE_FORMAT = 'dd-mm-yyyy';
 
-CREATE SEQUENCE Historico_manuntencao_seq
+CREATE SEQUENCE Peca_seq
 START WITH 1 
 INCREMENT BY 1;
 
@@ -30,7 +30,7 @@ CREATE TABLE Modelo_maquina (
 
 -- OK
 CREATE TABLE Maquina (
-    codigo_identificacao INTEGER NOT NULL,
+    codigo_identificacao VARCHAR2(10) NOT NULL,
     modelo VARCHAR2(30), -- nomedomodelo
     data_fabricacao date,
 
@@ -50,7 +50,7 @@ CREATE TABLE Linha_montagem (
 
 -- OK
 CREATE TABLE Maquina_montagem (
-    codigo_identificacao INTEGER NOT NULL, 
+    codigo_identificacao VARCHAR2(10) NOT NULL, 
     linha_montagem INTEGER, -- linhas: 1 a 9
     CHECK (linha_montagem  >= 1 AND linha_montagem  <= 9), -- linhas: 1 a 9
 
@@ -63,7 +63,7 @@ CREATE TABLE Maquina_montagem (
 
 -- OK
 CREATE TABLE Maquina_controle_qualidade (
-    codigo_identificacao INTEGER NOT NULL, 
+    codigo_identificacao VARCHAR2(10) NOT NULL, 
     parametros_teste VARCHAR2(1),  -- template -- A, B or C
     limites_tolerancia VARCHAR2(1),  -- template -- A, B or C
     
@@ -105,7 +105,7 @@ CREATE TABLE Revendedora (
 CREATE TABLE Peca (
     id INTEGER NOT NULL,
     categoria VARCHAR2(1),  -- template -- A, B or C
-    maquina_inspetora INTEGER,  -- cod
+    maquina_inspetora VARCHAR(10),  -- cod
     veiculo_recebedor VARCHAR2(17),  -- n_chassi
     data_inspecao date,
 
@@ -117,7 +117,7 @@ CREATE TABLE Peca (
 
 -- OK
 CREATE TABLE Historico_manutencao (
-    codigo_identificacao_maquina INTEGER UNIQUE, 
+    codigo_identificacao_maquina VARCHAR2(10) UNIQUE, 
     data_ date, 
     valor number(9,2),
 
@@ -162,7 +162,7 @@ CREATE TABLE Vender (
 
 -- OK
 CREATE TABLE Produzir(
-    cod_maquina_montagem INTEGER NOT NULL, 
+    cod_maquina_montagem VARCHAR2(10) NOT NULL, 
     n_chassi VARCHAR2(17) NOT NULL, 
     cpf_funcionario VARCHAR2(11),
     
