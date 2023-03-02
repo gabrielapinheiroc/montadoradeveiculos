@@ -67,6 +67,31 @@ CREATE TABLE Maquina_controle_qualidade (
     CONSTRAINT maquina_controle_qualidade_fkey FOREIGN KEY (codigo_identificacao) REFERENCES Maquina(codigo_identificacao)
 );
 
+-- NEW
+CREATE TABLE Veiculo (
+    n_chassi VARCHAR2(17) NOT NULL,
+    modelo VARCHAR2(30), 
+    cor VARCHAR2(15), 
+    ano INTEGER,
+
+    CONSTRAINT veiculo_pkey PRIMARY KEY (n_chassi)
+
+);
+
+-- NEW
+CREATE TABLE Custo_veiculo( 
+    modelo VARCHAR2(30), 
+    cor VARCHAR2(15), 
+    ano INTEGER, 
+    custo_producao number(14,2),
+
+    CONSTRAINT custo_veiculo_pkey PRIMARY KEY (modelo, cor, ano),
+
+    CONSTRAINT custo_veiculo_fkey1 FOREIGN KEY (modelo) REFERENCES Veiculo(modelo),
+    CONSTRAINT custo_veiculo_fkey2 FOREIGN KEY (cor) REFERENCES Veiculo(cor),
+    CONSTRAINT custo_veiculo_fkey3 FOREIGN KEY (ano) REFERENCES Veiculo(ano)
+);
+
 CREATE TABLE Telefone_funcionario (
     cpf_funcionario VARCHAR2(11) NOT NULL,
     num_telefone VARCHAR2(13) NOT NULL, -- template -- (81) 8888-8888
