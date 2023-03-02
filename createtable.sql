@@ -1,3 +1,5 @@
+ALTER SESSION SET NLS_DATE_FORMAT = 'dd-mm-yyyy';
+
 CREATE SEQUENCE Historico_manuntencao_seq
 START WITH 1 
 INCREMENT BY 1;
@@ -18,51 +20,50 @@ CREATE TABLE Funcionario (
 );
 
  -- OK
-CREATE TABLE Maquina (
-    codigo_identificacao VARCHAR2(10) NOT NULL,
-    modelo VARCHAR2(30), -- nomedomodelo
-    data_fabricacao date,
-
-    CONSTRAINT maquina_pkey PRIMARY KEY (codigo_identificacao)
-);
-
- -- NEW - 02270
 CREATE TABLE Modelo_maquina (
 
     nome_modelo VARCHAR2(30) NOT NULL, -- nomedomodelo
     fabricante VARCHAR2(14), -- cnpjfabricante
 
-    CONSTRAINT modelo_maquina_pkey PRIMARY KEY (nome_modelo),
-
-    CONSTRAINT modelo_maquina_fkey FOREIGN KEY (nome_modelo) REFERENCES Maquina(modelo)
-
+    CONSTRAINT modelo_maquina_pkey PRIMARY KEY (nome_modelo)--,
 );
 
 -- OK
-CREATE TABLE Maquina_montagem (
-    codigo_identificacao VARCHAR2(10) NOT NULL, 
-    linha_montagem INTEGER, -- linhas: 1 a 9
-    CHECK (linha_montagem  >= 1 AND linha_montagem  <= 9), -- linhas: 1 a 9
+CREATE TABLE Maquina (
+    codigo_identificacao INTEGER NOT NULL,
+    modelo VARCHAR2(30), -- nomedomodelo
+    data_fabricacao date,
 
-    CONSTRAINT maquina_montagem_pkey PRIMARY KEY (codigo_identificacao),
+    CONSTRAINT maquina_pkey PRIMARY KEY (codigo_identificacao),
 
-    CONSTRAINT maquina_montagem_fkey FOREIGN KEY (codigo_identificacao) REFERENCES Maquina(codigo_identificacao)
+    CONSTRAINT maquina_fkey FOREIGN KEY (modelo) REFERENCES Modelo_maquina(nome_modelo)
 );
 
--- NEW - 02270
+-- OK
 CREATE TABLE Linha_montagem (
     num_linha INTEGER,    
     CHECK (num_linha >= 1 AND num_linha <= 9), -- linhas: 1 a 9
     capacidade INTEGER, --Cap de car/h
 
-    CONSTRAINT linha_montagem_pkey PRIMARY KEY (num_linha),
+    CONSTRAINT linha_montagem_pkey PRIMARY KEY (num_linha)
+);
 
-    CONSTRAINT linha_montagem_fkey FOREIGN KEY (num_linha) REFERENCES Maquina_montagem(linha_montagem)
+-- OK
+CREATE TABLE Maquina_montagem (
+    codigo_identificacao INTEGER NOT NULL, 
+    linha_montagem INTEGER, -- linhas: 1 a 9
+    CHECK (linha_montagem  >= 1 AND linha_montagem  <= 9), -- linhas: 1 a 9
+
+    CONSTRAINT maquina_montagem_pkey PRIMARY KEY (codigo_identificacao),
+
+    CONSTRAINT maquina_montagem_fkey1 FOREIGN KEY (codigo_identificacao) REFERENCES Maquina(codigo_identificacao),
+
+    CONSTRAINT maquina_montagem_fkey2 FOREIGN KEY (linha_montagem) REFERENCES Linha_montagem(num_linha)
 );
 
 -- OK
 CREATE TABLE Maquina_controle_qualidade (
-    codigo_identificacao VARCHAR2(10) NOT NULL, 
+    codigo_identificacao INTEGER NOT NULL, 
     parametros_teste VARCHAR2(1),  -- template -- A, B or C
     limites_tolerancia VARCHAR2(1),  -- template -- A, B or C
     
@@ -72,29 +73,25 @@ CREATE TABLE Maquina_controle_qualidade (
 );
 
 -- OK
-CREATE TABLE Veiculo (
-    n_chassi VARCHAR2(17) NOT NULL,
-    modelo VARCHAR2(30), 
-    cor VARCHAR2(15), 
-    ano INTEGER,
-
-    CONSTRAINT veiculo_pkey PRIMARY KEY (n_chassi)
-
-);
-
--- NEW - 02270
 CREATE TABLE Custo_veiculo( 
     modelo VARCHAR2(30), 
     cor VARCHAR2(15), 
     ano INTEGER, 
     custo_producao number(14,2),
 
-    CONSTRAINT custo_veiculo_pkey PRIMARY KEY (modelo, cor, ano),
+    CONSTRAINT custo_veiculo_pkey PRIMARY KEY (modelo, cor, ano)
+);
 
-    CONSTRAINT custo_veiculo_fkey FOREIGN KEY (modelo, cor, ano) REFERENCES Veiculo(modelo, cor, ano)
-    --CONSTRAINT custo_veiculo_fkey1 FOREIGN KEY (modelo) REFERENCES Veiculo(modelo),
-    --CONSTRAINT custo_veiculo_fkey2 FOREIGN KEY (cor) REFERENCES Veiculo(cor),
-    --CONSTRAINT custo_veiculo_fkey3 FOREIGN KEY (ano) REFERENCES Veiculo(ano)
+-- OK
+CREATE TABLE Veiculo (
+    n_chassi VARCHAR2(17) NOT NULL,
+    modelo VARCHAR2(30), 
+    cor VARCHAR2(15), 
+    ano INTEGER,
+
+    CONSTRAINT veiculo_pkey PRIMARY KEY (n_chassi),
+
+    CONSTRAINT veiculo_fkey FOREIGN KEY (modelo, cor, ano) REFERENCES Custo_veiculo(modelo, cor, ano)
 );
 
 -- OK
@@ -108,7 +105,7 @@ CREATE TABLE Revendedora (
 CREATE TABLE Peca (
     id INTEGER NOT NULL,
     categoria VARCHAR2(1),  -- template -- A, B or C
-    maquina_inspetora VARCHAR2(10),  -- cod
+    maquina_inspetora INTEGER,  -- cod
     veiculo_recebedor VARCHAR2(17),  -- n_chassi
     data_inspecao date,
 
@@ -165,7 +162,7 @@ CREATE TABLE Vender (
 
 -- OK
 CREATE TABLE Produzir(
-    cod_maquina_montagem VARCHAR2(10) NOT NULL, 
+    cod_maquina_montagem INTEGER NOT NULL, 
     n_chassi VARCHAR2(17) NOT NULL, 
     cpf_funcionario VARCHAR2(11),
     
