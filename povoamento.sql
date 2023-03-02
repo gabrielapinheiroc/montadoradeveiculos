@@ -169,6 +169,25 @@ INSERT INTO
 VALUES
     ('M000000010', 'Modelo J', '03-NOV-2020');
 
+-- Maquina_controle_qualidade
+INSERT INTO
+    Maquina_controle_qualidade (
+        codigo_identificacao,
+        parametros_teste,
+        limites_tolerancia
+    )
+VALUES
+    ('M000000001', 'A', 'B');
+
+INSERT INTO
+    Maquina_controle_qualidade (
+        codigo_identificacao,
+        parametros_teste,
+        limites_tolerancia
+    )
+VALUES
+    ('M000000002', 'B', 'A');
+
 -- Telefone_funcionario
 INSERT INTO
     Telefone_funcionario (cpf_funcionario, num_telefone)
