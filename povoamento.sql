@@ -122,17 +122,17 @@ VALUES
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('0000000001', 'Modelo A', '20-FEB-2018');
+    ('0000000001', 'KWID', '20-FEB-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('0000000002', 'Modelo B', '01-APR-2018');
+    ('0000000002', 'OPALA', '01-APR-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('0000000003', 'Modelo C', '16-JUL-2018');
+    ('0000000003', 'ONIX', '16-JUL-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
