@@ -118,7 +118,6 @@ VALUES
         '00000000006'
     );
 
-
 -- Maquina
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
