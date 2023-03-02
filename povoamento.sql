@@ -182,3 +182,25 @@ VALUES (
     '99999999993'
 );
 
+-- Revendedora
+
+INSERT INTO Revendedora (
+    cnpj
+)
+VALUES (
+    '00000000000001'
+);
+
+INSERT INTO Revendedora (
+    cnpj
+)
+VALUES (
+    '00000000000002'
+);
+
+INSERT INTO Revendedora (
+    cnpj
+)
+VALUES (
+    '00000000000003'
+);
