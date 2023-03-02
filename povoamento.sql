@@ -204,3 +204,71 @@ INSERT INTO Revendedora (
 VALUES (
     '00000000000003'
 );
+
+-- Veiculo
+
+INSERT INTO Veiculo(
+    n_chassi,
+    modelo,
+    cor,
+    ano
+)
+VALUES (
+    '00000000000000001',
+    'KWID',
+    'PRETO',
+    2019
+);
+
+INSERT INTO Veiculo(
+    n_chassi,
+    modelo,
+    cor,
+    ano
+)
+VALUES (
+    '00000000000000002',
+    'KWID',
+    'ROSA CHOQUE',
+    2018
+);
+
+INSERT INTO Veiculo(
+    n_chassi,
+    modelo,
+    cor,
+    ano
+)
+VALUES (
+    '00000000000000003',
+    'OPALA',
+    'AZUL',
+    1980
+);
+
+INSERT INTO Veiculo(
+    n_chassi,
+    modelo,
+    cor,
+    ano
+)
+VALUES (
+    '00000000000000004',
+    'OPALA',
+    'VERMELHO',
+    1980
+);
+
+INSERT INTO Veiculo(
+    n_chassi,
+    modelo,
+    cor,
+    ano
+)
+VALUES (
+    '00000000000000005',
+    'ONIX',
+    'PRETO',
+    2019
+);
+
