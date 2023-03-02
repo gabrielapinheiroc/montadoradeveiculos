@@ -1,4 +1,4 @@
-CREATE SEQUENCE Historico_manuntencao_seq
+CREATE SEQUENCE Historico_manutencao_seq
 START WITH 1 
 INCREMENT BY 1;
 
