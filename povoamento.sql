@@ -211,3 +211,31 @@ INSERT INTO
     Telefone_revendedora (cod_revendedora, num_telefone)
 VALUES
     ('00000000000003', '99999999997');
+
+-- Vender
+INSERT INTO
+    Vender (cnpj_revendedora, cpf_funcionario, n_chassi)
+VALUES
+    (
+        '00000000000001',
+        '00000000002',
+        '00000000000000001'
+    );
+
+INSERT INTO
+    Vender (cnpj_revendedora, cpf_funcionario, n_chassi)
+VALUES
+    (
+        '00000000000002',
+        '00000000004',
+        '00000000000000002'
+    );
+
+INSERT INTO
+    Vender (cnpj_revendedora, cpf_funcionario, n_chassi)
+VALUES
+    (
+        '00000000000003',
+        '00000000005',
+        '00000000000000003'
+    );
