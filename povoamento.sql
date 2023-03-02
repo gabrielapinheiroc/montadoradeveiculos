@@ -118,21 +118,72 @@ VALUES
         '00000000006'
     );
 
+-- Modelo_maquina
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo A', 'Kuka Robotics')
+
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo B', 'ABB Group')
+
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo C', 'ABB Group')
+
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo D', 'Yaskawa Electric Corporation')
+
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo E', 'Yaskawa Electric Corporation')
+
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo F', 'Kawasaki Heavy Industries Ltd.')
+
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo G', 'Mitsubishi Electric Corporation')
+
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo H', 'Mitsubishi Electric Corporation')
+
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo I', 'Unirversal Robots A/S')
+
+INSERT INTO
+    Modelo_maquina (nome_modelo, fabricante)
+VALUES
+    ('Modelo J', 'Universal Robots A/S')
+
 -- Maquina
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('0000000001', 'KWID', '20-FEB-2018');
+    ('0000000001', 'Modelo A', '20-FEB-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('0000000002', 'OPALA', '01-APR-2018');
+    ('0000000002', 'Modelo B', '01-APR-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
 VALUES
-    ('0000000003', 'ONIX', '16-JUL-2018');
+    ('0000000003', 'Modelo C', '16-JUL-2018');
 
 INSERT INTO
     Maquina (codigo_identificacao, modelo, data_fabricacao)
@@ -213,37 +264,37 @@ VALUES
 INSERT INTO
     Telefone_funcionario (cpf_funcionario, num_telefone)
 VALUES
-    ('00000000001', '99999999999');
+    ('00000000001', '(99)9999-9999');
 
 INSERT INTO
     Telefone_funcionario (cpf_funcionario, num_telefone)
 VALUES
-    ('00000000002', '99999999998');
+    ('00000000002', '(99)9999-9998');
 
 INSERT INTO
     Telefone_funcionario (cpf_funcionario, num_telefone)
 VALUES
-    ('00000000003', '99999999997');
+    ('00000000003', '(99)9999-9997');
 
 INSERT INTO
     Telefone_funcionario (cpf_funcionario, num_telefone)
 VALUES
-    ('00000000004', '99999999996');
+    ('00000000004', '(99)9999-9996');
 
 INSERT INTO
     Telefone_funcionario (cpf_funcionario, num_telefone)
 VALUES
-    ('00000000005', '99999999995');
+    ('00000000005', '(99)9999-9995');
 
 INSERT INTO
     Telefone_funcionario (cpf_funcionario, num_telefone)
 VALUES
-    ('00000000006', '99999999994');
+    ('00000000006', '(99)9999-9994');
 
 INSERT INTO
     Telefone_funcionario (cpf_funcionario, num_telefone)
 VALUES
-    ('00000000007', '99999999993');
+    ('00000000007', '(99)9999-9993');
 
 -- Revendedora
 INSERT INTO
@@ -260,6 +311,32 @@ INSERT INTO
     Revendedora (cnpj)
 VALUES
     ('00000000000003');
+
+-- Custo_veiculo
+INSERT INTO
+    Custo_veiculo (modelo, cor, ano, custo_producao)
+VALUES
+    ('KWID', 'PRETO', 2019, 20420);
+
+INSERT INTO
+    Custo_veiculo (modelo, cor, ano, custo_producao)
+VALUES
+    ('KWID', 'ROSA CHOQUE', 2018, 20720);
+
+INSERT INTO
+    Custo_veiculo (modelo, cor, ano, custo_producao)
+VALUES
+    ('OPALA', 'AZUL', 1980, 39550);
+
+INSERT INTO
+    Custo_veiculo (modelo, cor, ano, custo_producao)
+VALUES
+    ('OPALA', 'VERMELHO', 1980, 38600);
+
+INSERT INTO
+    Custo_veiculo (modelo, cor, ano, custo_producao)
+VALUES
+    ('ONIX', 'PRETO', 2019, 25500);
 
 -- Veiculo
 INSERT INTO
