@@ -188,26 +188,26 @@ INSERT INTO
 VALUES
     ('M000000002', 'B', 'A');
 
--- Historico_manuntencao
+-- Historico_manutencao
 INSERT INTO 
-    Historico_manuntencao (codigo_identificacao_maquina,data_)
+    Historico_manutencao (codigo_identificacao_maquina,data_)
 VALUES
-    (Historico_manuntencao_seq.NEXTVAL,'27-05-2023');
+    (Historico_manutencao_seq.NEXTVAL,'27-05-2023');
 
 INSERT INTO 
-    Historico_manuntencao (codigo_identificacao_maquina,data_)
+    Historico_manutencao (codigo_identificacao_maquina,data_)
 VALUES
-    (Historico_manuntencao_seq.NEXTVAL,'28-05-2023');
+    (Historico_manutencao_seq.NEXTVAL,'28-05-2023');
 
 INSERT INTO 
-    Historico_manuntencao (codigo_identificacao_maquina,data_)
+    Historico_manutencao (codigo_identificacao_maquina,data_)
 VALUES
-    (Historico_manuntencao_seq.NEXTVAL,'28-06-2023');
+    (Historico_manutencao_seq.NEXTVAL,'28-06-2023');
 
 INSERT INTO 
-    Historico_manuntencao (codigo_identificacao_maquina,data_)
+    Historico_manutencao (codigo_identificacao_maquina,data_)
 VALUES
-    (Historico_manuntencao_seq.NEXTVAL,'24-07-2023');
+    (Historico_manutencao_seq.NEXTVAL,'24-07-2023');
 
 -- Telefone_funcionario
 INSERT INTO
@@ -330,3 +330,5 @@ VALUES
         '00000000005',
         '00000000000000003'
     );
+
+-- Produzir
