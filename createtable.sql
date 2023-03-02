@@ -25,7 +25,7 @@ CREATE TABLE Maquina (
  -- NEW
 CREATE TABLE Modelo_maquina (
 
-    nome_modelo VARCHAR2(30), -- nomedomodelo
+    nome_modelo VARCHAR2(30) NOT NULL, -- nomedomodelo
     fabricante VARCHAR2(14), -- cnpjfabricante
 
     CONSTRAINT modelo_maquina_pkey PRIMARY KEY (nome_modelo),
@@ -38,6 +38,7 @@ CREATE TABLE Modelo_maquina (
 CREATE TABLE Maquina_montagem (
     codigo_identificacao VARCHAR2(10) NOT NULL, 
     linha_montagem INTEGER, -- linhas: 1 a 9
+    CHECK (linha_montagem  >= 1 AND linha_montagem  <= 9)-- linhas: 1 a 9
 
     CONSTRAINT maquina_montagem_pkey PRIMARY KEY (codigo_identificacao),
 
@@ -46,8 +47,24 @@ CREATE TABLE Maquina_montagem (
 
 -- NEW
 CREATE TABLE Linha_montagem (
-    num_linha INTEGER, -- linhas: 1 a 9
-    capacidade 
+    num_linha INTEGER,    
+    CHECK (num_linha >= 1 AND num_linha <= 9)-- linhas: 1 a 9
+    capacidade INTEGER, --Cap de car/h
+
+    CONSTRAINT linha_montagem_pkey PRIMARY KEY (num_linha),
+
+    CONSTRAINT linha_montagem_fkey FOREIGN KEY (num_linha) REFERENCES Maquina_montagem(linha_montagem)
+);
+
+-- NEW
+CREATE TABLE Maquina_controle_qualidade (
+    codigo_identificacao VARCHAR2(10) NOT NULL, 
+    parametros_teste VARCHAR2(1),  -- template -- A, B or C
+    limites_tolerancia VARCHAR2(1),  -- template -- A, B or C
+    
+    CONSTRAINT maquina_controle_qualidade_pkey PRIMARY KEY (codigo_identificacao),
+
+    CONSTRAINT maquina_controle_qualidade_fkey FOREIGN KEY (codigo_identificacao) REFERENCES Maquina(codigo_identificacao)
 );
 
 CREATE TABLE Telefone_funcionario (
@@ -91,7 +108,7 @@ CREATE TABLE Relatorio_manutencao(
     CONSTRAINT Relatorio_manutencao_pkey PRIMARY KEY (num_relatorio)
 
 );
-
+ -- OK
 CREATE TABLE Telefone_revendedora (
     cod_revendedora VARCHAR2(14) NOT NULL, -- cnpjrevendedora
     num_telefone VARCHAR2(13) NOT NULL, -- template -- (81) 8888-8888
