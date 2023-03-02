@@ -336,8 +336,8 @@ INSERT INTO
     Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
 VALUES
     (
-        '0000000001',
-        '00000000000000001' -- 'KWID'
+        '0000000001', 
+        '00000000000000001' -- 'KWID' - 'Modelo A'
         '00000000007'      
     );
 
@@ -346,7 +346,7 @@ INSERT INTO
 VALUES
     (
         '0000000001',
-        '00000000000000002' -- 'KWID'
+        '00000000000000002' -- 'KWID' - 'Modelo A'
         '00000000007'      
     );
 
@@ -354,8 +354,8 @@ INSERT INTO
     Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
 VALUES
     (
-        '0000000001',
-        '00000000000000003' -- 'OPALA'
+        '0000000002',
+        '00000000000000003' -- 'OPALA' - 'Modelo B'
         '00000000007'      
     );
 
@@ -363,8 +363,8 @@ INSERT INTO
     Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
 VALUES
     (
-        '0000000001',
-        '00000000000000004' -- 'OPALA'
+        '0000000002',
+        '00000000000000004' -- 'OPALA' - 'Modelo B'
         '00000000007'      
     );
 
@@ -372,7 +372,7 @@ INSERT INTO
     Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
 VALUES
     (
-        '0000000001',
-        '00000000000000005' -- 'ONIX'
+        '0000000003',
+        '00000000000000005' -- 'ONIX' -  'Modelo C'
         '00000000007'      
     );
