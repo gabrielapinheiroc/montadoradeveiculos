@@ -151,7 +151,7 @@ CREATE TABLE Vender (
     cpf_funcionario VARCHAR2(11),
     n_chassi VARCHAR2(17),
     
-    CONSTRAINT vender_pkey PRIMARY KEY (cnpj_revendedor, cpf_funcionario, n_chassi),
+    CONSTRAINT vender_pkey PRIMARY KEY (cnpj_revendedora, cpf_funcionario, n_chassi),
 
     CONSTRAINT vender_fkey1 FOREIGN KEY (cnpj_revendedora) REFERENCES Revendedora(cnpj),
     CONSTRAINT vender_fkey2 FOREIGN KEY (cpf_funcionario) REFERENCES Funcionario(cpf),
@@ -161,7 +161,7 @@ CREATE TABLE Vender (
 -- NEW
 CREATE TABLE Produzir(
     cod_maquina_montagem VARCHAR2(10) NOT NULL, 
-    n_chassin_chassi VARCHAR2(17) NOT NULL, 
+    n_chassi VARCHAR2(17) NOT NULL, 
     cpf_funcionario VARCHAR2(11),
     
     CONSTRAINT produzir_pkey PRIMARY KEY (cod_maquina_montagem, n_chassi),
