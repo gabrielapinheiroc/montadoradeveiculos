@@ -13,7 +13,7 @@ CREATE TABLE Funcionario (
 
 );
 
- -- NEW
+ -- OK
 CREATE TABLE Maquina (
     codigo_identificacao VARCHAR2(10) NOT NULL,
     modelo VARCHAR2(30), -- nomedomodelo
@@ -22,7 +22,7 @@ CREATE TABLE Maquina (
     CONSTRAINT maquina_pkey PRIMARY KEY (codigo_identificacao)
 );
 
- -- NEW
+ -- NEW - 02270
 CREATE TABLE Modelo_maquina (
 
     nome_modelo VARCHAR2(30) NOT NULL, -- nomedomodelo
@@ -34,21 +34,21 @@ CREATE TABLE Modelo_maquina (
 
 );
 
--- NEW
+-- OK
 CREATE TABLE Maquina_montagem (
     codigo_identificacao VARCHAR2(10) NOT NULL, 
     linha_montagem INTEGER, -- linhas: 1 a 9
-    CHECK (linha_montagem  >= 1 AND linha_montagem  <= 9)-- linhas: 1 a 9
+    CHECK (linha_montagem  >= 1 AND linha_montagem  <= 9), -- linhas: 1 a 9
 
     CONSTRAINT maquina_montagem_pkey PRIMARY KEY (codigo_identificacao),
 
     CONSTRAINT maquina_montagem_fkey FOREIGN KEY (codigo_identificacao) REFERENCES Maquina(codigo_identificacao)
 );
 
--- NEW
+-- NEW - 02270
 CREATE TABLE Linha_montagem (
     num_linha INTEGER,    
-    CHECK (num_linha >= 1 AND num_linha <= 9)-- linhas: 1 a 9
+    CHECK (num_linha >= 1 AND num_linha <= 9), -- linhas: 1 a 9
     capacidade INTEGER, --Cap de car/h
 
     CONSTRAINT linha_montagem_pkey PRIMARY KEY (num_linha),
@@ -56,7 +56,7 @@ CREATE TABLE Linha_montagem (
     CONSTRAINT linha_montagem_fkey FOREIGN KEY (num_linha) REFERENCES Maquina_montagem(linha_montagem)
 );
 
--- NEW
+-- OK
 CREATE TABLE Maquina_controle_qualidade (
     codigo_identificacao VARCHAR2(10) NOT NULL, 
     parametros_teste VARCHAR2(1),  -- template -- A, B or C
@@ -67,7 +67,7 @@ CREATE TABLE Maquina_controle_qualidade (
     CONSTRAINT maquina_controle_qualidade_fkey FOREIGN KEY (codigo_identificacao) REFERENCES Maquina(codigo_identificacao)
 );
 
--- NEW
+-- OK
 CREATE TABLE Veiculo (
     n_chassi VARCHAR2(17) NOT NULL,
     modelo VARCHAR2(30), 
@@ -78,7 +78,7 @@ CREATE TABLE Veiculo (
 
 );
 
--- NEW
+-- NEW - 02270
 CREATE TABLE Custo_veiculo( 
     modelo VARCHAR2(30), 
     cor VARCHAR2(15), 
@@ -93,13 +93,14 @@ CREATE TABLE Custo_veiculo(
     --CONSTRAINT custo_veiculo_fkey3 FOREIGN KEY (ano) REFERENCES Veiculo(ano)
 );
 
+-- OK
 CREATE TABLE Revendedora (
     cnpj VARCHAR2(14) NOT NULL, 
 
     CONSTRAINT revendedora_pkey PRIMARY KEY (cnpj)
 );
 
--- NEW
+-- OK
 CREATE TABLE Peca (
     id VARCHAR2(10) NOT NULL,
     categoria VARCHAR2(1),  -- template -- A, B or C
@@ -113,7 +114,7 @@ CREATE TABLE Peca (
     CONSTRAINT Peca_fkey2 FOREIGN KEY (veiculo_recebedor) REFERENCES Veiculo(n_chassi)
 );
 
--- NEW
+-- OK
 CREATE TABLE Historico_manutencao (
     codigo_identificacao_maquina VARCHAR2(10) NOT NULL, 
     data_ date, 
@@ -124,7 +125,7 @@ CREATE TABLE Historico_manutencao (
     CONSTRAINT historico_manutencao_fkey FOREIGN KEY (codigo_identificacao_maquina) REFERENCES Maquina(codigo_identificacao)
 );
 
--- NEW
+-- OK
 CREATE TABLE Telefone_funcionario (
     cpf_funcionario VARCHAR2(11) NOT NULL,
     num_telefone VARCHAR2(13) NOT NULL, -- template -- (81) 8888-8888
@@ -134,7 +135,7 @@ CREATE TABLE Telefone_funcionario (
     CONSTRAINT telefone_funcionario_fkey FOREIGN KEY (cpf_funcionario) REFERENCES Funcionario(cpf)
 );
 
- -- NEW
+ -- OK
 CREATE TABLE Telefone_revendedora (
     cod_revendedora VARCHAR2(14) NOT NULL, -- cnpjrevendedora
     num_telefone VARCHAR2(13) NOT NULL, -- template -- (81) 8888-8888
@@ -145,7 +146,7 @@ CREATE TABLE Telefone_revendedora (
 
 );
 
--- NEW
+-- OK
 CREATE TABLE Vender (
     cnpj_revendedora VARCHAR2(14),
     cpf_funcionario VARCHAR2(11),
@@ -158,7 +159,7 @@ CREATE TABLE Vender (
     CONSTRAINT vender_fkey3 FOREIGN KEY (n_chassi) REFERENCES Veiculo(n_chassi)
 );
 
--- NEW
+-- OK
 CREATE TABLE Produzir(
     cod_maquina_montagem VARCHAR2(10) NOT NULL, 
     n_chassi VARCHAR2(17) NOT NULL, 
