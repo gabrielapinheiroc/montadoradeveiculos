@@ -332,3 +332,47 @@ VALUES
     );
 
 -- Produzir
+INSERT INTO
+    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+VALUES
+    (
+        '0000000001',
+        '00000000000000001'
+        '00000000007'      
+    );
+
+INSERT INTO
+    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+VALUES
+    (
+        '0000000001',
+        '00000000000000002'
+        '00000000007'      
+    );
+
+INSERT INTO
+    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+VALUES
+    (
+        '0000000001',
+        '00000000000000003'
+        '00000000007'      
+    );
+
+INSERT INTO
+    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+VALUES
+    (
+        '0000000001',
+        '00000000000000004'
+        '00000000007'      
+    );
+
+INSERT INTO
+    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+VALUES
+    (
+        '0000000001',
+        '00000000000000005'
+        '00000000007'      
+    );
