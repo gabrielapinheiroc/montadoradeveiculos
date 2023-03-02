@@ -23,7 +23,7 @@ CREATE TABLE Funcionario (
 CREATE TABLE Modelo_maquina (
 
     nome_modelo VARCHAR2(30) NOT NULL, -- nomedomodelo
-    fabricante VARCHAR2(14), -- cnpjfabricante
+    fabricante VARCHAR2(40), -- cnpjfabricante
 
     CONSTRAINT modelo_maquina_pkey PRIMARY KEY (nome_modelo)--,
 );
