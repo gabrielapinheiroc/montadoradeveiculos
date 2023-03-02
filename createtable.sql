@@ -38,7 +38,7 @@ CREATE TABLE Modelo_maquina (
 CREATE TABLE Maquina_montagem (
     codigo_identificacao VARCHAR2(10) NOT NULL, 
     linha_montagem INTEGER, -- linhas: 1 a 9
-    CHECK (linha_montagem  >= 1 AND linha_montagem  <= 9)-- linhas: 1 a 9
+    CHECK (linha_montagem  >= 1 AND linha_montagem  <= 9), -- linhas: 1 a 9
 
     CONSTRAINT maquina_montagem_pkey PRIMARY KEY (codigo_identificacao),
 
@@ -48,7 +48,7 @@ CREATE TABLE Maquina_montagem (
 -- NEW
 CREATE TABLE Linha_montagem (
     num_linha INTEGER,    
-    CHECK (num_linha >= 1 AND num_linha <= 9)-- linhas: 1 a 9
+    CHECK (num_linha >= 1 AND num_linha <= 9), -- linhas: 1 a 9
     capacidade INTEGER, --Cap de car/h
 
     CONSTRAINT linha_montagem_pkey PRIMARY KEY (num_linha),
