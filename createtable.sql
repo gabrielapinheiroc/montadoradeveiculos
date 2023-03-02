@@ -1,3 +1,7 @@
+CREATE SEQUENCE Historico_manuntencao_seq
+START WITH 1 
+INCREMENT BY 1;
+
 -- OK
 CREATE TABLE Funcionario (
     cpf VARCHAR2(11) NOT NULL, 
@@ -116,7 +120,7 @@ CREATE TABLE Peca (
 
 -- OK
 CREATE TABLE Historico_manutencao (
-    codigo_identificacao_maquina INTEGER NOT NULL, 
+    codigo_identificacao_maquina INTEGER UNIQUE, 
     data_ date, 
     valor number(9,2),
 
