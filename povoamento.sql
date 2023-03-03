@@ -122,52 +122,52 @@ VALUES
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo A', 'Kuka Robotics')
+    ('Modelo A', 'Kuka Robotics');
 
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo B', 'ABB Group')
+    ('Modelo B', 'ABB Group');
 
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo C', 'ABB Group')
+    ('Modelo C', 'ABB Group');
 
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo D', 'Yaskawa Electric Corporation')
+    ('Modelo D', 'Yaskawa Electric Corporation');
 
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo E', 'Yaskawa Electric Corporation')
+    ('Modelo E', 'Yaskawa Electric Corporation');
 
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo F', 'Kawasaki Heavy Industries Ltd.')
+    ('Modelo F', 'Kawasaki Heavy Industries Ltd.');
 
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo G', 'Mitsubishi Electric Corporation')
+    ('Modelo G', 'Mitsubishi Electric Corporation');
 
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo H', 'Mitsubishi Electric Corporation')
+    ('Modelo H', 'Mitsubishi Electric Corporation');
 
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo I', 'Unirversal Robots A/S')
+    ('Modelo I', 'Unirversal Robots A/S');
 
 INSERT INTO
     Modelo_maquina (nome_modelo, fabricante)
 VALUES
-    ('Modelo J', 'Universal Robots A/S')
+    ('Modelo J', 'Universal Robots A/S');
 
 -- Maquina
 INSERT INTO
@@ -270,52 +270,52 @@ VALUES
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000001', 5)
+    ('0000000001', 5);
 
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000002', 4)
+    ('0000000002', 4);
 
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000003', 6)
+    ('0000000003', 6);
 
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000004', 5)
+    ('0000000004', 5);
 
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000005', 9)
+    ('0000000005', 9);
 
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000006', 5)
+    ('0000000006', 5);
 
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000007', 3)
+    ('0000000007', 3);
 
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000008', 8)
+    ('0000000008', 8);
 
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000009', 6)
+    ('0000000009', 6);
 
 INSERT INTO
     Maquina_montagem (codigo_identificacao, linha_montagem)
 VALUES
-    ('0000000010', 7)
+    ('0000000010', 7);
 
 -- Maquina_controle_qualidade
 INSERT INTO
@@ -409,22 +409,6 @@ INSERT INTO
 VALUES
     ('00000000000003');
 
--- Peca
-INSERT INTO
-    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
-VALUES
-    (Peca_seq.NEXTVAL,'A', '0000000001', '00000000000000001', '27-05-2023');
-
-INSERT INTO
-    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
-VALUES
-    (Peca_seq.NEXTVAL,'B', '0000000002', '00000000000000001', '27-05-2023');
-
-INSERT INTO
-    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
-VALUES
-    (Peca_seq.NEXTVAL,'C', '0000000002', '00000000000000003', '28-05-2023');
-
 -- Custo_veiculo
 INSERT INTO
     Custo_veiculo (modelo, cor, ano, custo_producao)
@@ -466,6 +450,22 @@ INSERT INTO
     Veiculo (n_chassi, modelo, cor, ano)
 VALUES
     ('00000000000000003', 'OPALA', 'AZUL', 1980);
+
+-- Peca
+INSERT INTO
+    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
+VALUES
+    (Peca_seq.NEXTVAL,'A', '0000000001', '00000000000000001', '27-05-2023');
+
+INSERT INTO
+    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
+VALUES
+    (Peca_seq.NEXTVAL,'B', '0000000002', '00000000000000001', '27-05-2023');
+
+INSERT INTO
+    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
+VALUES
+    (Peca_seq.NEXTVAL,'C', '0000000002', '00000000000000003', '28-05-2023');
 
 INSERT INTO
     Veiculo (n_chassi, modelo, cor, ano)
