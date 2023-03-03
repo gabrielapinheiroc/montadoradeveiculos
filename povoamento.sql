@@ -312,6 +312,22 @@ INSERT INTO
 VALUES
     ('00000000000003');
 
+-- Peca
+INSERT INTO
+    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
+VALUES
+    (Peca_seq.NEXTVAL,'A', '0000000001', '00000000000000001', '27-05-2023');
+
+INSERT INTO
+    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
+VALUES
+    (Peca_seq.NEXTVAL,'B', '0000000002', '00000000000000001', '27-05-2023');
+
+INSERT INTO
+    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
+VALUES
+    (Peca_seq.NEXTVAL,'C', '0000000002', '00000000000000003', '28-05-2023');
+
 -- Custo_veiculo
 INSERT INTO
     Custo_veiculo (modelo, cor, ano, custo_producao)
