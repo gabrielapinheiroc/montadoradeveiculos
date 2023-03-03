@@ -220,6 +220,103 @@ INSERT INTO
 VALUES
     ('0000000010', 'Modelo J', '03-NOV-2020');
 
+-- Linha_montagem
+INSERT INTO
+    Linha_montagem (num_linha, capacidade)
+VALUES
+    (1, 10);
+
+INSERT INTO
+    Linha_montagem (num_linha, capacidade)
+VALUES
+    (2, 11);
+
+INSERT INTO
+    Linha_montagem (num_linha, capacidade)
+VALUES
+    (3, 12);
+
+INSERT INTO
+    Linha_montagem (num_linha, capacidade)
+VALUES
+    (4, 13);
+
+INSERT INTO
+    Linha_montagem (num_linha, capacidade)
+VALUES
+    (5, 14);
+
+INSERT INTO
+    Linha_montagem (num_linha, capacidade)
+VALUES
+    (6, 15);
+
+INSERT INTO
+    Linha_montagem (num_linha, capacidade)
+VALUES
+    (7, 16);
+
+INSERT INTO
+    Linha_montagem (num_linha, capacidade)
+VALUES
+    (8, 17);
+
+INSERT INTO
+    Linha_montagem (num_linha, capacidade)
+VALUES
+    (9, 18);
+
+-- Maquina_montagem
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000001', 5)
+
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000002', 4)
+
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000003', 6)
+
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000004', 5)
+
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000005', 9)
+
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000006', 5)
+
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000007', 3)
+
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000008', 8)
+
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000009', 6)
+
+INSERT INTO
+    Maquina_montagem (codigo_identificacao, linha_montagem)
+VALUES
+    ('0000000010', 7)
+
 -- Maquina_controle_qualidade
 INSERT INTO
     Maquina_controle_qualidade (
@@ -430,7 +527,7 @@ INSERT INTO
 VALUES
     (
         '0000000001', 
-        '00000000000000001' -- 'KWID' - 'Modelo A'
+        '00000000000000001', -- 'KWID' - 'Modelo A'
         '00000000007'      
     );
 
@@ -439,7 +536,7 @@ INSERT INTO
 VALUES
     (
         '0000000001',
-        '00000000000000002' -- 'KWID' - 'Modelo A'
+        '00000000000000002', -- 'KWID' - 'Modelo A'
         '00000000007'      
     );
 
@@ -448,7 +545,7 @@ INSERT INTO
 VALUES
     (
         '0000000002',
-        '00000000000000003' -- 'OPALA' - 'Modelo B'
+        '00000000000000003', -- 'OPALA' - 'Modelo B'
         '00000000007'      
     );
 
@@ -457,7 +554,7 @@ INSERT INTO
 VALUES
     (
         '0000000002',
-        '00000000000000004' -- 'OPALA' - 'Modelo B'
+        '00000000000000004', -- 'OPALA' - 'Modelo B'
         '00000000007'      
     );
 
@@ -466,6 +563,6 @@ INSERT INTO
 VALUES
     (
         '0000000003',
-        '00000000000000005' -- 'ONIX' -  'Modelo C'
+        '00000000000000005', -- 'ONIX' -  'Modelo C'
         '00000000007'      
     );
