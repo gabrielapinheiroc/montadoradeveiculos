@@ -337,25 +337,25 @@ VALUES
     ('0000000002', 'B', 'A');
 
 -- Historico_manutencao
-INSERT INTO 
-    Historico_manutencao (codigo_identificacao_maquina,data_)
+INSERT INTO
+    Historico_manutencao (codigo_identificacao_maquina, data_)
 VALUES
-    ('0000000001','27-05-2023');
+    ('0000000001', '27-05-2023');
 
-INSERT INTO 
-    Historico_manutencao (codigo_identificacao_maquina,data_)
+INSERT INTO
+    Historico_manutencao (codigo_identificacao_maquina, data_)
 VALUES
-    ('0000000002','28-05-2023');
+    ('0000000002', '28-05-2023');
 
-INSERT INTO 
-    Historico_manutencao (codigo_identificacao_maquina,data_)
+INSERT INTO
+    Historico_manutencao (codigo_identificacao_maquina, data_)
 VALUES
-    ('0000000003','28-06-2023');
+    ('0000000003', '28-06-2023');
 
-INSERT INTO 
-    Historico_manutencao (codigo_identificacao_maquina,data_)
+INSERT INTO
+    Historico_manutencao (codigo_identificacao_maquina, data_)
 VALUES
-    ('0000000004','24-07-2023');
+    ('0000000004', '24-07-2023');
 
 -- Telefone_funcionario
 INSERT INTO
@@ -453,19 +453,55 @@ VALUES
 
 -- Peca
 INSERT INTO
-    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
+    Peca (
+        id,
+        categoria,
+        maquina_inspetora,
+        veiculo_recebedor,
+        data_inspecao
+    )
 VALUES
-    (Peca_seq.NEXTVAL,'A', '0000000001', '00000000000000001', '27-05-2023');
+    (
+        Peca_seq.NEXTVAL,
+        'A',
+        '0000000001',
+        '00000000000000001',
+        '27-05-2023'
+    );
 
 INSERT INTO
-    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
+    Peca (
+        id,
+        categoria,
+        maquina_inspetora,
+        veiculo_recebedor,
+        data_inspecao
+    )
 VALUES
-    (Peca_seq.NEXTVAL,'B', '0000000002', '00000000000000001', '27-05-2023');
+    (
+        Peca_seq.NEXTVAL,
+        'B',
+        '0000000002',
+        '00000000000000001',
+        '27-05-2023'
+    );
 
 INSERT INTO
-    Peca (id, categoria, maquina_inspetora, veiculo_recebedor, data_inspecao)
+    Peca (
+        id,
+        categoria,
+        maquina_inspetora,
+        veiculo_recebedor,
+        data_inspecao
+    )
 VALUES
-    (Peca_seq.NEXTVAL,'C', '0000000002', '00000000000000003', '28-05-2023');
+    (
+        Peca_seq.NEXTVAL,
+        'C',
+        '0000000002',
+        '00000000000000003',
+        '28-05-2023'
+    );
 
 INSERT INTO
     Veiculo (n_chassi, modelo, cor, ano)
@@ -523,46 +559,46 @@ VALUES
 
 -- Produzir
 INSERT INTO
-    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+    Produzir (cod_maquina_montagem, n_chassi, cpf_funcionario)
 VALUES
     (
-        '0000000001', 
+        '0000000001',
         '00000000000000001', -- 'KWID' - 'Modelo A'
-        '00000000007'      
+        '00000000007'
     );
 
 INSERT INTO
-    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+    Produzir (cod_maquina_montagem, n_chassi, cpf_funcionario)
 VALUES
     (
         '0000000001',
         '00000000000000002', -- 'KWID' - 'Modelo A'
-        '00000000007'      
+        '00000000007'
     );
 
 INSERT INTO
-    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+    Produzir (cod_maquina_montagem, n_chassi, cpf_funcionario)
 VALUES
     (
         '0000000002',
         '00000000000000003', -- 'OPALA' - 'Modelo B'
-        '00000000007'      
+        '00000000007'
     );
 
 INSERT INTO
-    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+    Produzir (cod_maquina_montagem, n_chassi, cpf_funcionario)
 VALUES
     (
         '0000000002',
         '00000000000000004', -- 'OPALA' - 'Modelo B'
-        '00000000007'      
+        '00000000007'
     );
 
 INSERT INTO
-    Produzir (cod_maquina_montagem,n_chassi,cpf_funcionario)
+    Produzir (cod_maquina_montagem, n_chassi, cpf_funcionario)
 VALUES
     (
         '0000000003',
         '00000000000000005', -- 'ONIX' -  'Modelo C'
-        '00000000007'      
+        '00000000007'
     );
