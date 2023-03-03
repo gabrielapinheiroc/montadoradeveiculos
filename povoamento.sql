@@ -338,24 +338,24 @@ VALUES
 
 -- Historico_manutencao
 INSERT INTO
-    Historico_manutencao (codigo_identificacao_maquina, data_)
+    Historico_manutencao (codigo_identificacao_maquina, data_, valor)
 VALUES
-    ('0000000001', '27-05-2023');
+    ('0000000001', '27-05-2023', 15000);
 
 INSERT INTO
-    Historico_manutencao (codigo_identificacao_maquina, data_)
+    Historico_manutencao (codigo_identificacao_maquina, data_, valor)
 VALUES
-    ('0000000002', '28-05-2023');
+    ('0000000002', '28-05-2023', 8500);
 
 INSERT INTO
-    Historico_manutencao (codigo_identificacao_maquina, data_)
+    Historico_manutencao (codigo_identificacao_maquina, data_, valor)
 VALUES
-    ('0000000003', '28-06-2023');
+    ('0000000003', '28-06-2023', 20500);
 
 INSERT INTO
-    Historico_manutencao (codigo_identificacao_maquina, data_)
+    Historico_manutencao (codigo_identificacao_maquina, data_, valor)
 VALUES
-    ('0000000004', '24-07-2023');
+    ('0000000004', '24-07-2023', 11000);
 
 -- Telefone_funcionario
 INSERT INTO
@@ -517,17 +517,17 @@ VALUES
 INSERT INTO
     Telefone_revendedora (cod_revendedora, num_telefone)
 VALUES
-    ('00000000000001', '99999999999');
+    ('00000000000001', '(99)9999-9989');
 
 INSERT INTO
     Telefone_revendedora (cod_revendedora, num_telefone)
 VALUES
-    ('00000000000002', '99999999998');
+    ('00000000000002', '(99)9999-9988');
 
 INSERT INTO
     Telefone_revendedora (cod_revendedora, num_telefone)
 VALUES
-    ('00000000000003', '99999999997');
+    ('00000000000003', '(99)9999-9987');
 
 -- Vender
 INSERT INTO
