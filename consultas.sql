@@ -102,3 +102,10 @@ SELECT
     COUNT(*)
 FROM
     Peca;
+
+SELECT
+    v.n_chassi,
+    c.custo_producao
+FROM
+    Veiculo v
+    LEFT JOIN Custo_veiculo c ON v.modelo = c.modelo;
