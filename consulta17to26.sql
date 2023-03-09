@@ -8,5 +8,5 @@ SELECT
 FROM
     Vender
 WHERE
-    cpf_funcionario IN (SELECT F.cpf_funcionario FROM Funcionario F WHERE F.supervisor = '00000000001');
+    cpf_funcionario IN (SELECT F.cpf FROM Funcionario F WHERE F.supervisor = '00000000001');
 
