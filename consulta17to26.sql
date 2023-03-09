@@ -17,5 +17,5 @@ SELECT
 FROM
     Linha_montagem LM
 WHERE
-    LM.num_linha = ALL (SELECT MM.linha_montagem FROM Maquina_montagem MM WHERE MM.codigo_identificacao = '0000000001')
+    LM.num_linha = ALL (SELECT MM.linha_montagem FROM Maquina_montagem MM WHERE MM.codigo_identificacao = '0000000001');
 
