@@ -109,3 +109,48 @@ SELECT
 FROM
     Veiculo v
     LEFT JOIN Custo_veiculo c ON v.modelo = c.modelo;
+
+CREATE VIEW
+    funcionarios_cargo_gerencia AS
+SELECT
+    *
+FROM
+    Funcionario
+WHERE
+    funcao LIKE 'Gerente de %';
+
+SELECT
+    codigo_identificacao
+FROM
+    Maquina_controle_qualidade
+UNION
+SELECT
+    codigo_identificacao
+FROM
+    Maquina_montagem;
+
+SELECT
+    COUNT(*),
+    supervisor
+FROM
+    Funcionario
+GROUP BY
+    supervisor
+HAVING
+    COUNT(*) > 1
+ORDER BY
+    COUNT(*) DESC;
+
+SELECT
+    cpf
+FROM
+    Funcionario
+WHERE
+    cpf = ANY (
+        SELECT
+            cpf_funcionario
+        FROM
+            Vender
+        WHERE
+            cnpj_revendedora = '00000000000003'
+    );
