@@ -217,3 +217,73 @@ FROM
     Linha_montagem LM
 WHERE
     LM.num_linha = ALL (SELECT MM.linha_montagem FROM Maquina_montagem MM WHERE MM.codigo_identificacao = '0000000001');
+
+DECLARE
+    v_salario_mes NUMBER(10,2) := 0;
+    v_salario_hora NUMBER(10,2) := 8;
+BEGIN
+    FOR day IN 1..30 LOOP
+        v_salario_mes := v_salario_mes + v_salario_hora * 8;
+    END LOOP;
+    
+    DBMS_OUTPUT.PUT_LINE('Salário mensal: ' || v_salario_mes);
+    UPDATE Funcionario SET salario = v_salario_mes WHERE cpf = '00000000001';
+END;
+
+
+DECLARE
+    CURSOR c_funcionarios_salario
+    IS
+        SELECT
+            salario
+        FROM
+            Funcionario;
+BEGIN    
+    FOR salario IN c_funcionarios_salario LOOP
+        DBMS_OUTPUT.PUT_LINE('Salário: ' || salario.salario);
+    END LOOP;
+END;
+
+
+DECLARE
+    CURSOR c_funcionarios_salario_ordenado
+    IS
+        SELECT
+            salario
+        FROM
+            Funcionario
+        ORDER BY
+            salario DESC;
+    
+    func_atual Funcionario.salario%TYPE;
+begin
+    OPEN c_funcionarios_salario_ordenado;
+    FETCH c_funcionarios_salario_ordenado INTO func_atual;
+    while c_funcionarios_salario_ordenado%FOUND LOOP
+        DBMS_OUTPUT.PUT_LINE('Salário: ' || func_atual);
+        FETCH c_funcionarios_salario_ordenado INTO func_atual;
+    end loop;
+end;
+
+DECLARE
+    CURSOR c_funcionarios_salario_ordenado
+    IS
+        SELECT
+            salario
+        FROM
+            Funcionario
+        ORDER BY
+            salario DESC;
+    
+    func_atual Funcionario.salario%TYPE;
+    gasto_total NUMBER(10,2) := 0;
+
+begin
+    OPEN c_funcionarios_salario_ordenado;
+loop
+    FETCH c_funcionarios_salario_ordenado INTO func_atual;
+    gasto_total := gasto_total + func_atual;
+    exit when gasto_total > 20000;
+end loop;
+DBMS_OUTPUT.PUT_LINE('Precisamos demitir todos os funcionarios que ganham mais que ' || gasto_total);
+    end;
