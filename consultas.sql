@@ -1,6 +1,26 @@
 ALTER TABLE Funcionario
 ADD Email varchar2(255);
 
+DECLARE
+    TYPE Tabela_precos IS TABLE OF Historico_manutencao.valor%TYPE
+    INDEX BY BINARY_INTEGER;
+    Precos_manutencao Tabela_precos;
+BEGIN
+    Precos_manutencao(1) := 8000;
+    Precos_manutencao(2) := 12000;
+    Precos_manutencao(3) := 16000;
+    Precos_manutencao(4) := 20000;
+    Precos_manutencao(5) := 24000;
+    Precos_manutencao(6) := 28000;
+
+    dbms_output.put_line(Precos_manutencao(1));
+    dbms_output.put_line(Precos_manutencao(2));
+    dbms_output.put_line(Precos_manutencao(3));
+    dbms_output.put_line(Precos_manutencao(4));
+    dbms_output.put_line(Precos_manutencao(5));
+    dbms_output.put_line(Precos_manutencao(6));
+END;
+
 CREATE INDEX Funcionario_Email ON Funcionario (Email);
 
 INSERT INTO
