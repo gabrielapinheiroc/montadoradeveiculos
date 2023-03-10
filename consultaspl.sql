@@ -20,3 +20,13 @@ BEGIN
         WHEN NO_DATA_FOUND THEN
         dbms_output.put_line('Não foi possivel identificar a capacidade');
 END;
+
+DECLARE
+    nv_telefone_revendedora Telefone_revendedora%ROWTYPE;
+BEGIN
+    nv_telefone_revendedora.cod_revendedora := '00000000000111';
+    nv_telefone_revendedora.num_telefone := '(99)9456-9989';
+    
+    dbms_output.put_line(nv_telefone_revendedora.cod_revendedora);
+    dbms_output.put_line(nv_telefone_revendedora.num_telefone);
+END;
