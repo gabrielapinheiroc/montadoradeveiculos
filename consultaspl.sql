@@ -43,7 +43,7 @@ BEGIN
     END IF;
 END;
 --TESTANDO
-UPDATE Maquina SET data_fabricacao_maquina = '04-APR-2022'
+UPDATE Maquina SET data_fabricacao = '04-APR-2022'
 WHERE codigo_identificacao = '0000000001';
 
 -- Trigger para impedir que o fabricante da tabela Modelo_maquina seja alterado
