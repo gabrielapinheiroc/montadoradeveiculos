@@ -1,5 +1,5 @@
 DECLARE    
-    nv_num_linha INTEGER;
+    nv_num_linha INTEGER := 2;
     nv_capacidade INTEGER;
     nv_nivelcapacidade VARCHAR2(255);
 BEGIN
