@@ -177,7 +177,7 @@ WHERE
 
 SELECT
     F.primeiro_nome,
-    F.cpf_funcionario
+    F.cpf
 FROM
     Funcionario F
 WHERE
@@ -218,7 +218,7 @@ WHERE
     );
 
 --17
-SELECT F.primeiro_nome, F.cpf_funcionario FROM Funcionario F
+SELECT F.primeiro_nome, F.cpf FROM Funcionario F
 WHERE F.salario > (SELECT AVG(Salario) FROM Funcionario);
 
 --18
