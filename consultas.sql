@@ -340,3 +340,28 @@ BEGIN
     dbms_output.put_line(nv_telefone_revendedora.cod_revendedora);
     dbms_output.put_line(nv_telefone_revendedora.num_telefone);
 END;
+
+CREATE OR REPLACE PACKAGE funcionario_utils AS
+    FUNCTION get_salario_mensal(p_salario_hora NUMBER) RETURN NUMBER;
+    FUNCTION get_salario_anual(p_salario_hora NUMBER) RETURN NUMBER;
+END funcionario_utils;
+
+CREATE OR REPLACE PACKAGE BODY funcionario_utils AS
+    FUNCTION get_salario_mensal(p_salario_hora NUMBER) RETURN NUMBER IS
+        v_salario_mes NUMBER(10,2) := 0;
+    BEGIN
+        FOR day IN 1..30 LOOP
+            v_salario_mes := v_salario_mes + p_salario_hora * 8;
+        END LOOP;
+        RETURN v_salario_mes;
+    END;
+    
+    FUNCTION get_salario_anual(p_salario_hora NUMBER) RETURN NUMBER IS
+        v_salario_anual NUMBER(10,2) := 0;
+    BEGIN
+        FOR month IN 1..12 LOOP
+            v_salario_anual := v_salario_anual + get_salario_mensal(p_salario_hora);
+        END LOOP;
+        RETURN v_salario_anual;
+    END;
+END funcionario_utils;
