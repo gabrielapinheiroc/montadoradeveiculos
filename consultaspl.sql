@@ -1,4 +1,4 @@
-DECLARE    
+/*DECLARE    
     nv_num_linha INTEGER := 2;
     nv_capacidade INTEGER;
     nv_nivelcapacidade VARCHAR2(255);
@@ -30,3 +30,4 @@ BEGIN
     dbms_output.put_line(nv_telefone_revendedora.cod_revendedora);
     dbms_output.put_line(nv_telefone_revendedora.num_telefone);
 END;
+*/
