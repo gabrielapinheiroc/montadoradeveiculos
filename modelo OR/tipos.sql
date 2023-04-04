@@ -28,7 +28,7 @@ CREATE OR REPLACE TYPE tp_funcionario AS OBJECT (
     sobrenome VARCHAR2(50),
     salario NUMBER(9, 2),
     funcao VARCHAR2(30),
-    telefone tp_telefone_funcionario_array,
+    telefone tp_telefone_funcionario_array
 
     -- Metodos --
 );
