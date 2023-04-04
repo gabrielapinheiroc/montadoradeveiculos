@@ -47,12 +47,26 @@ CREATE OR REPLACE TYPE tp_revendedora AS OBJECT(
 
 --VEÍCULO--
 
-CREATE OR REPLACE TYPE tp_veiculo AS OBJECT(
-    n_chassi VARCHAR2(17),
+-- está com problemas
+'''CREATE OR REPLACE TYPE tp_custo_veiculo  AS OBJECT (
     modelo VARCHAR2(30),
     cor VARCHAR2(15),
-    ano INTEGER
+    ano INTEGER,
+    custo_producao number(14, 2),
+);
 
+CREATE OR REPLACE TYPE tp_veiculo AS OBJECT(
+    n_chassi VARCHAR2(17),
+    modelo VARCHAR2(30), -- devo excluir?
+    cor VARCHAR2(15), -- devo excluir?
+    ano INTEGER, -- devo excluir? 
+    custo tp_custo_veiculo --devo passar como uma var ou coloco modelo, cor e ano dentro do custo?
+    --OU
+    ''' 
+    -- considerando que modelo, cor e ano estará atrelado ao custo
+    n_chassi VARCHAR2(17),
+    custo tp_custo_veiculo 
+    '''
     -- faltam os métodos
 );
-/
+/'''
