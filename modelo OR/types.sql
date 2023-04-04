@@ -35,6 +35,8 @@ CREATE OR REPLACE TYPE tp_telefone_revendedora_array AS VARRAY(4) OF tp_telefone
 CREATE OR REPLACE TYPE tp_revendedora AS OBJECT(
     telefone tp_telefone_revendedora_array,
     cpf VARCHAR2(14)
+
+    -- faltam os métodos
 );
 /
 
@@ -44,3 +46,13 @@ CREATE OR REPLACE TYPE tp_revendedora AS OBJECT(
 --PEÇA--
 
 --VEÍCULO--
+
+CREATE OR REPLACE TYPE tp_veiculo AS OBJECT(
+    n_chassi VARCHAR2(17),
+    modelo VARCHAR2(30),
+    cor VARCHAR2(15),
+    ano INTEGER
+
+    -- faltam os métodos
+);
+/
