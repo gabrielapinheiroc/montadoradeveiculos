@@ -4,7 +4,7 @@ CREATE OR REPLACE TYPE tp_telefone_funcionario AS OBJECT(
 );
 /
 
-CREATE OR REPLACE TYPE tp_telefone_funcionario AS VARRAY(2) OF tp_telefone_funcionario;
+CREATE OR REPLACE TYPE tp_telefone_funcionario_array AS VARRAY(2) OF tp_telefone_funcionario;
 -- funcionario tem 2 telefones (pessoal e residencial)
 /
 --REVENDEDORA--
