@@ -73,7 +73,7 @@ CREATE OR REPLACE TYPE tp_maquina AS OBJECT (
     data_fabricacao      DATE,
 
     -- METODOS --
-    MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2, --Retorna o código de identificação da máquina
+    FINAL MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2, --Retorna o código de identificação da máquina
 
     MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina) --Printa informações da máquina
 ) NOT FINAL NOT INSTANTIABLE;
@@ -81,7 +81,7 @@ CREATE OR REPLACE TYPE tp_maquina AS OBJECT (
 
 -- Body Maquina --
 CREATE OR REPLACE TYPE BODY tp_maquina AS
-    MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2 IS 
+    FINAL MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2 IS 
     BEGIN 
         RETURN codigo_identificacao; 
     END; 
@@ -304,7 +304,9 @@ CREATE OR REPLACE TYPE tp_historico_manutencao AS OBJECT (
     -- METODOS --
     CONSTRUCTOR FUNCTION tp_historico_manutencao(m REF tp_maquina,
                                                  d     DATE,
-                                                 v     NUMBER) RETURN SELF AS RESULT
+                                                 v     NUMBER) RETURN SELF AS RESULT,
+
+    MEMBER PROCEDURE exibir_informacoes(SELF tp_historico_manutencao)
 );
 /
 
@@ -318,6 +320,13 @@ CREATE OR REPLACE TYPE BODY tp_historico_manutencao AS
         data_   := d;
         valor   := v;
         RETURN;
+    END;
+
+    MEMBER PROCEDURE exibir_informacoes(SELF tp_historico_manutencao) IS
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('Máquina: ' || DEREF(maquina).get_codigo_identificacao);
+        DBMS_OUTPUT.PUT_LINE('Data:    ' || data_);
+        DBMS_OUTPUT.PUT_LINE('Valor:   ' || valor);
     END;
 END;
 /
