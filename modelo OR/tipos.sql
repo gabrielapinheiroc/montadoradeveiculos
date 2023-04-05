@@ -57,7 +57,7 @@ CREATE OR REPLACE TYPE BODY tp_funcionario AS
         sobrenome     := sn;
         salario       := s;
         funcao        := f;
-        --supervisor    := sv;
+        --supervisor  := sv;
         telefone      := t;
         RETURN;
     END;
@@ -126,10 +126,10 @@ CREATE OR REPLACE TYPE tp_maquina_montagem UNDER tp_maquina (
 );
 /
 
---VERIFICAR ERRO DEPOIS
+--OK
 CREATE OR REPLACE TYPE BODY tp_maquina_montagem AS
     CONSTRUCTOR FUNCTION tp_maquina_montagem(ci VARCHAR2,
-                                             m  VARCHAR2,
+                                             nm  VARCHAR2,
                                              f  VARCHAR2,
                                              df DATE,
                                              nl INTEGER,
@@ -166,7 +166,7 @@ CREATE OR REPLACE TYPE tp_maquina_controle_qualidade UNDER tp_maquina (
 
     -- Metodos --
     CONSTRUCTOR FUNCTION tp_maquina_controle_qualidade(ci VARCHAR2,
-                                                       m  VARCHAR2,
+                                                       nm  VARCHAR2,
                                                        f  VARCHAR2,
                                                        df DATE,
                                                        pt VARCHAR2,
@@ -176,17 +176,17 @@ CREATE OR REPLACE TYPE tp_maquina_controle_qualidade UNDER tp_maquina (
 );
 /
 
---VERIFICAR ERRO DEPOIS
+--OK
 CREATE OR REPLACE TYPE BODY tp_maquina_controle_qualidade AS
     CONSTRUCTOR FUNCTION tp_maquina_controle_qualidade(ci VARCHAR2,
-                                                       m  VARCHAR2,
+                                                       nm VARCHAR2,
                                                        f  VARCHAR2,
                                                        df DATE,
                                                        pt VARCHAR2,
                                                        lt VARCHAR2) RETURN SELF AS RESULT IS
     BEGIN
         codigo_identificacao := ci;
-        modelo               := m;
+        nome_modelo          := nm;
         fabricante           := f;
         data_fabricacao      := df;
         parametros_teste     := pt;
@@ -198,7 +198,7 @@ CREATE OR REPLACE TYPE BODY tp_maquina_controle_qualidade AS
     BEGIN
         DBMS_OUTPUT.PUT_LINE('Maquina:            ' || codigo_identificacao);
         DBMS_OUTPUT.PUT_LINE('Tipo:               Controle Qualidade');
-        DBMS_OUTPUT.PUT_LINE('Modelo:             ' || modelo);
+        DBMS_OUTPUT.PUT_LINE('Modelo:             ' || nome_modelo);
         DBMS_OUTPUT.PUT_LINE('Data Fabricacao:    ' || data_fabricacao);
         DBMS_OUTPUT.PUT_LINE('Parametros Teste:   ' || parametros_teste);
         DBMS_OUTPUT.PUT_LINE('Limites Tolerancia: ' || limites_tolerancia);
@@ -237,7 +237,7 @@ CREATE OR REPLACE TYPE tp_veiculo AS OBJECT (
 );
 /
 
---VERIFICAR ERRO
+--OK
 CREATE OR REPLACE TYPE BODY tp_veiculo AS
     CONSTRUCTOR FUNCTION tp_veiculo(nc VARCHAR2,
                                     m  VARCHAR2,
@@ -355,9 +355,9 @@ CREATE OR REPLACE TYPE BODY tp_historico_manutencao AS
         RETURN;
     END;
 
-    MEMBER PROCEDURE exibir_informacoes(SELF tp_historico_manutencao)
+    MEMBER PROCEDURE exibir_informacoes(SELF tp_historico_manutencao) IS
     BEGIN
-        DBMS_OUTPUT.PUT_LINE('Máquina: ' || DEREF(m).codigo_identificacao);
+        DBMS_OUTPUT.PUT_LINE('Máquina: ' || DEREF(maquina).codigo_identificacao);
         DBMS_OUTPUT.PUT_LINE('Data:    ' || data_);
         DBMS_OUTPUT.PUT_LINE('Valor:   ' || valor);
     END;
@@ -406,14 +406,14 @@ CREATE OR REPLACE TYPE tp_producao AS OBJECT (
 /
 
 --VER O ERRO DEPOIS
-CREATE OR REPLACE TYPE BODY tp_produzir AS
-    CONSTRUCTOR FUNCTION tp_produzir(mm REF tp_maquina_montagem,
+CREATE OR REPLACE TYPE BODY tp_producao AS
+    CONSTRUCTOR FUNCTION tp_producao(mm REF tp_maquina_montagem,
                                      v  REF tp_veiculo,
                                      f  REF tp_funcionario) RETURN SELF AS RESULT IS
     BEGIN
-        cod_maquina_montagem := mm;
-        veiculo              := v;
-        funcionario          := f;
+        maquina_montagem := mm;
+        veiculo          := v;
+        funcionario      := f;
         RETURN;
     END;
 END;
