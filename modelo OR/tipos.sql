@@ -93,9 +93,26 @@ CREATE OR REPLACE TYPE tp_maquina AS OBJECT (
     data_fabricacao      DATE,
 
     -- Metodos --
+    MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2,
+
     MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina)
 ) NOT FINAL NOT INSTANTIABLE;
 /
+
+CREATE OR REPLACE TYPE BODY tp_maquina AS
+    MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2 IS 
+    BEGIN 
+        RETURN codigo_identificacao; 
+    END; 
+  
+    MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina) IS 
+    BEGIN 
+        DBMS_OUTPUT.PUT_LINE('Código Identificação: ' || get_codigo_identificacao); 
+        DBMS_OUTPUT.PUT_LINE('Nome Modelo:          ' || nome_modelo); 
+        DBMS_OUTPUT.PUT_LINE('Fabricante:           ' || fabricante); 
+        DBMS_OUTPUT.PUT_LINE('Data Fabricação:      '|| TO_CHAR(data_fabricacao, 'DD-MON-YYYY')); 
+    END; 
+END;
 
 --MAQUINA MONTAGEM----------------------------------------------------------------------------------------------------
 
@@ -129,7 +146,7 @@ CREATE OR REPLACE TYPE tp_maquina_montagem UNDER tp_maquina (
 --OK
 CREATE OR REPLACE TYPE BODY tp_maquina_montagem AS
     CONSTRUCTOR FUNCTION tp_maquina_montagem(ci VARCHAR2,
-                                             nm  VARCHAR2,
+                                             nm VARCHAR2,
                                              f  VARCHAR2,
                                              df DATE,
                                              nl INTEGER,
@@ -243,7 +260,7 @@ CREATE OR REPLACE TYPE BODY tp_veiculo AS
                                     m  VARCHAR2,
                                     c  VARCHAR2,
                                     a  INTEGER,
-                                    cp NUMBER) RETURN SELF AS RESULT
+                                    cp NUMBER) RETURN SELF AS RESULT IS
     BEGIN
         n_chassi       := nc;
         modelo         := m;
@@ -338,8 +355,6 @@ CREATE OR REPLACE TYPE tp_historico_manutencao AS OBJECT (
     CONSTRUCTOR FUNCTION tp_historico_manutencao(m REF tp_maquina,
                                                  d     DATE,
                                                  v     NUMBER) RETURN SELF AS RESULT,
-
-    MEMBER PROCEDURE exibir_informacoes(SELF tp_historico_manutencao)
 );
 /
 
@@ -353,13 +368,6 @@ CREATE OR REPLACE TYPE BODY tp_historico_manutencao AS
         data_   := d;
         valor   := v;
         RETURN;
-    END;
-
-    MEMBER PROCEDURE exibir_informacoes(SELF tp_historico_manutencao) IS
-    BEGIN
-        DBMS_OUTPUT.PUT_LINE('Máquina: ' || DEREF(maquina).codigo_identificacao);
-        DBMS_OUTPUT.PUT_LINE('Data:    ' || data_);
-        DBMS_OUTPUT.PUT_LINE('Valor:   ' || valor);
     END;
 END;
 /
