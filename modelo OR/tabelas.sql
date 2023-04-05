@@ -1,5 +1,5 @@
 -- Tabela de funcionários --
-CREATE OR REPLACE TABLE tb_funcionario OF tp_funcionario (
+CREATE TABLE tb_funcionario OF tp_funcionario (
     CPF PRIMARY KEY,
     primeiro_nome NOT NULL,
     sobrenome     NOT NULL,
@@ -11,7 +11,7 @@ CREATE OR REPLACE TABLE tb_funcionario OF tp_funcionario (
 /
 
 -- Tbalea de máquinas de montgem --
-CREATE OR REPLACE TABLE tb_maquina_montagem OF tp_maquina_montagem (
+CREATE TABLE tb_maquina_montagem OF tp_maquina_montagem (
     codigo_identificacao PRIMARY KEY,
     nome_modelo          NOT NULL,
     fabricante           NOT NULL,
@@ -23,7 +23,7 @@ CREATE OR REPLACE TABLE tb_maquina_montagem OF tp_maquina_montagem (
 );
 /
 -- Tabela de máquinas de controle de qualidade --
-CREATE OR REPLACE TABLE tb_maquina_controle_qualidade OF tp_maquina_controle_qualidade (
+CREATE TABLE tb_maquina_controle_qualidade OF tp_maquina_controle_qualidade (
     codigo_identificacao PRIMARY KEY,
     nome_modelo          NOT NULL,
     fabricante           NOT NULL,
@@ -34,17 +34,17 @@ CREATE OR REPLACE TABLE tb_maquina_controle_qualidade OF tp_maquina_controle_qua
 /
 
 -- Tabelas de revendedoras --
-CREATE OR REPLACE TABLE tb_revendedora OF tp_revendedora (
+CREATE TABLE tb_revendedora OF tp_revendedora (
     cnpj PRIMARY KEY
 ) NESTED TABLE lista_telefone STORE AS telefones_revendedora;
 /
 
 -- Tabela de produção --
-CREATE OR REPLACE TABLE tb_producao OF tp_producao;
+CREATE TABLE tb_producao OF tp_producao;
 /
 
 -- Tabela de veículos --
-CREATE OR REPLACE TABLE tb_veiculo OF tp_veiculo (
+CREATE TABLE tb_veiculo OF tp_veiculo (
     n_chassi PRIMARY KEY,
     modelo NOT NULL,
     cor NOT NULL,
@@ -54,7 +54,7 @@ CREATE OR REPLACE TABLE tb_veiculo OF tp_veiculo (
 /
 
 -- Tabela de peças --
-CREATE OR REPLACE TABLE tb_peca OF tp_peca (
+CREATE TABLE tb_peca OF tp_peca (
     id PRIMARY KEY,
     categoria NOT NULL,
     maquina_inspetora WITH ROWID REFERENCES tb_maquina_controle_qualidade,
@@ -64,7 +64,7 @@ CREATE OR REPLACE TABLE tb_peca OF tp_peca (
 /
 
 -- Tabela de hstórico de manutenção --
-CREATE OR REPLACE TABLE tb_historico_manutencao OF tp_historico_manutencao (
+CREATE TABLE tb_historico_manutencao OF tp_historico_manutencao (
     maquina WITH ROWID REFERENCES tb_maquina_controle_qualidade,
     data_ NOT NULL,
     valor NOT NULL
