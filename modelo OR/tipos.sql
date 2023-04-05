@@ -28,7 +28,9 @@ CREATE OR REPLACE TYPE tp_funcionario AS OBJECT (
                                         f  VARCHAR2,
                                         t  tp_telefone_funcionario_array) RETURN SELF AS RESULT,
 
-    MEMBER FUNCTION bonus_salario(percentual NUMBER) RETURN NUMBER --Retorna salário com um bônus salarial
+    MEMBER FUNCTION get_salario_liquido(percentual NUMBER) RETURN NUMBER, --Retorna salário bruto menos descontos
+
+    MAP MEMBER FUNCTION get_salario_anual RETURN NUMBER
 );
 /
 
@@ -50,11 +52,16 @@ CREATE OR REPLACE TYPE BODY tp_funcionario AS
         RETURN;
     END;
 
-    MEMBER FUNCTION bonus_salario(percentual NUMBER) RETURN NUMBER IS
-        bonus NUMBER;
+    MEMBER FUNCTION get_salario_liquido(percentual NUMBER) RETURN NUMBER IS
+        desconto NUMBER;
     BEGIN
-        bonus := percentual / 100;
-        RETURN salario * (1 + bonus);
+        desconto := percentual / 100;
+        RETURN salario * (1 - bonus);
+    END;
+
+    MAP MEMBER FUNCTION get_salario_anual RETURN NUMBER IS
+    BEGIN
+        RETURN salario * 12;
     END;
 END;
 /
@@ -75,6 +82,8 @@ CREATE OR REPLACE TYPE tp_maquina AS OBJECT (
     -- METODOS --
     FINAL MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2, --Retorna o código de identificação da máquina
 
+    ORDER MEMBER FUNCTION mesmo_fabricante(m tp_maquina) RETURN INTEGER,
+
     MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina) --Printa informações da máquina
 ) NOT FINAL NOT INSTANTIABLE;
 /
@@ -85,13 +94,22 @@ CREATE OR REPLACE TYPE BODY tp_maquina AS
     BEGIN 
         RETURN codigo_identificacao; 
     END; 
-  
+
+    ORDER MEMBER FUNCTION mesmo_fabricante(m tp_maquina) RETURN INTEGER IS
+    BEGIN
+        IF fabricante == m.fabricante THEN
+            RETURN 1;
+        ELSE
+            RETURN 0;
+        END IF;
+    END;
+ 
     MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina) IS 
     BEGIN 
         DBMS_OUTPUT.PUT_LINE('Código Identificação: ' || get_codigo_identificacao); 
         DBMS_OUTPUT.PUT_LINE('Nome Modelo:          ' || nome_modelo); 
         DBMS_OUTPUT.PUT_LINE('Fabricante:           ' || fabricante); 
-        DBMS_OUTPUT.PUT_LINE('Data Fabricação:      '|| TO_CHAR(data_fabricacao, 'DD-MON-YYYY')); 
+        DBMS_OUTPUT.PUT_LINE('Data Fabricação:      ' || TO_CHAR(data_fabricacao, 'DD-MON-YYYY')); 
     END; 
 END;
 /
