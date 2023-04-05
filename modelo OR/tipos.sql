@@ -25,10 +25,17 @@ CREATE OR REPLACE TYPE tp_funcionario AS OBJECT (
     cpf           VARCHAR2(11),
   --nome          tp_nome_funcionario,
     primeiro_nome VARCHAR2(50),
+<<<<<<< HEAD
     sobrenome     VARCHAR2(50),
     salario       NUMBER(9, 2),
     funcao        VARCHAR2(30),
     telefone      tp_telefone_funcionario_array,
+=======
+    sobrenome VARCHAR2(50),
+    salario NUMBER(9, 2),
+    funcao VARCHAR2(30),
+    telefone tp_telefone_funcionario_array
+>>>>>>> af473678b2376b18438fc89c647fd5afac8fa48c
 
     -- Metodos --
     CONSTRUCTOR FUNCTION tp_funcionario(c  VARCHAR2(11),
