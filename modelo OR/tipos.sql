@@ -11,45 +11,34 @@ CREATE OR REPLACE TYPE tp_telefone_funcionario_array AS VARRAY(2) OF tp_telefone
 -- funcionario tem 2 telefones (pessoal e trabalho)
 /
 
-/*
--- Nome funcionario --
-CREATE OR REPLACE TYPE tp_nome_funcionario AS OBJECT(
-    primeiro_nome VARCHAR2(50),
-    sobrenome     VARCHAR2(50)
-);
-/
-*/
-
 -- Funcionario --
 CREATE OR REPLACE TYPE tp_funcionario AS OBJECT (
     cpf           VARCHAR2(11),
-  --nome          tp_nome_funcionario,
     primeiro_nome VARCHAR2(50),
     sobrenome     VARCHAR2(50),
     salario       NUMBER(9, 2),
     funcao        VARCHAR2(30),
     telefone      tp_telefone_funcionario_array,
 
-    -- Metodos --
+    -- METODOS --
     CONSTRUCTOR FUNCTION tp_funcionario(c  VARCHAR2,
                                         pn VARCHAR2,
                                         sn VARCHAR2,
                                         s  NUMBER,
                                         f  VARCHAR2,
-                                        --sv VARCHAR2,
                                         t  tp_telefone_funcionario_array) RETURN SELF AS RESULT,
 
-    MEMBER FUNCTION bonus_salario(percentual NUMBER) RETURN NUMBER
+    MEMBER FUNCTION bonus_salario(percentual NUMBER) RETURN NUMBER --Retorna salário com um bônus salarial
 );
 /
 
+-- Body Funcionarios --
 CREATE OR REPLACE TYPE BODY tp_funcionario AS
     CONSTRUCTOR FUNCTION tp_funcionario(c  VARCHAR2,
                                         pn VARCHAR2,
                                         sn VARCHAR2,
                                         s  NUMBER,
                                         f  VARCHAR2,
-                                        --sv VARCHAR2,
                                         t  tp_telefone_funcionario_array) RETURN SELF AS RESULT IS
     BEGIN
         cpf           := c;
@@ -57,7 +46,6 @@ CREATE OR REPLACE TYPE BODY tp_funcionario AS
         sobrenome     := sn;
         salario       := s;
         funcao        := f;
-        --supervisor  := sv;
         telefone      := t;
         RETURN;
     END;
@@ -71,34 +59,27 @@ CREATE OR REPLACE TYPE BODY tp_funcionario AS
 END;
 /
 
-ALTER TYPE tp_funcionario ADD ATTRIBUTE (supervisor REF tp_funcionario) CASCADE;
+-- Autorrelacionamento em Funcionario --
+ALTER TYPE tp_funcionario ADD ATTRIBUTE (supervisor REF tp_funcionario);
+/
 
 --MAQUINA----------------------------------------------------------------------------------------------------
-
-/*
--- Modelo maquina --
-CREATE OR REPLACE TYPE tp_modelo_maquina AS OBJECT (
-    nome_modelo VARCHAR2(30),
-    fabricante  VARCHAR2(40)
-);
-/
-*/
 
 -- Maquina --
 CREATE OR REPLACE TYPE tp_maquina AS OBJECT (
     codigo_identificacao VARCHAR2(10),
-  --modelo               tp_modelo_maquina,
     nome_modelo          VARCHAR2(30),
     fabricante           VARCHAR2(40),
     data_fabricacao      DATE,
 
-    -- Metodos --
-    MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2,
+    -- METODOS --
+    MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2, --Retorna o código de identificação da máquina
 
-    MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina)
+    MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina) --Printa informações da máquina
 ) NOT FINAL NOT INSTANTIABLE;
 /
 
+-- Body Maquina --
 CREATE OR REPLACE TYPE BODY tp_maquina AS
     MEMBER FUNCTION get_codigo_identificacao RETURN VARCHAR2 IS 
     BEGIN 
@@ -113,25 +94,16 @@ CREATE OR REPLACE TYPE BODY tp_maquina AS
         DBMS_OUTPUT.PUT_LINE('Data Fabricação:      '|| TO_CHAR(data_fabricacao, 'DD-MON-YYYY')); 
     END; 
 END;
+/
 
 --MAQUINA MONTAGEM----------------------------------------------------------------------------------------------------
 
-/*
--- Linha montagem --
-CREATE OR REPLACE TYPE tp_linha_montagem AS OBJECT (
-    num_linha  INTEGER,
-    capacidade INTEGER
-);
-/
-*/
-
 -- Maquina Montagem --
 CREATE OR REPLACE TYPE tp_maquina_montagem UNDER tp_maquina (
-  --linha_montagem tp_linha_montagem
     num_linha      INTEGER,
     capacidade     INTEGER,
 
-    -- Metodos --
+    -- METODOS --
     CONSTRUCTOR FUNCTION tp_maquina_montagem(ci VARCHAR2,
                                              nm VARCHAR2,
                                              f  VARCHAR2,
@@ -139,11 +111,11 @@ CREATE OR REPLACE TYPE tp_maquina_montagem UNDER tp_maquina (
                                              nl INTEGER,
                                              c  INTEGER) RETURN SELF AS RESULT,
 
-    OVERRIDING MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina_montagem)
+    OVERRIDING MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina_montagem) --Printa as informações da máquina dde montagem
 );
 /
 
---OK
+-- Body Maquina Montagem --
 CREATE OR REPLACE TYPE BODY tp_maquina_montagem AS
     CONSTRUCTOR FUNCTION tp_maquina_montagem(ci VARCHAR2,
                                              nm VARCHAR2,
@@ -176,12 +148,12 @@ END;
 
 --MAQUINA CONTROLE QUALIDADE----------------------------------------------------------------------------------------------------
 
--- Maquina controle_qualidade --
+-- Maquina Controle Qualidade --
 CREATE OR REPLACE TYPE tp_maquina_controle_qualidade UNDER tp_maquina (
     parametros_teste   VARCHAR(1),
     limites_tolerancia VARCHAR(1),
 
-    -- Metodos --
+    -- METODOS --
     CONSTRUCTOR FUNCTION tp_maquina_controle_qualidade(ci VARCHAR2,
                                                        nm  VARCHAR2,
                                                        f  VARCHAR2,
@@ -189,11 +161,11 @@ CREATE OR REPLACE TYPE tp_maquina_controle_qualidade UNDER tp_maquina (
                                                        pt VARCHAR2,
                                                        lt VARCHAR2) RETURN SELF AS RESULT,
 
-    OVERRIDING MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina_controle_qualidade)
+    OVERRIDING MEMBER PROCEDURE exibir_informacoes(SELF tp_maquina_controle_qualidade) --Printa informações da maquina de controle de qualidade
 );
 /
 
---OK
+-- Body Máquina Controle Qualidade --
 CREATE OR REPLACE TYPE BODY tp_maquina_controle_qualidade AS
     CONSTRUCTOR FUNCTION tp_maquina_controle_qualidade(ci VARCHAR2,
                                                        nm VARCHAR2,
@@ -225,27 +197,15 @@ END;
 
 --VEICULO----------------------------------------------------------------------------------------------------
 
-/*
--- Custo veiculo --
-CREATE OR REPLACE TYPE tp_custo_veiculo AS OBJECT (
-    modelo VARCHAR2(30),
-    cor VARCHAR2(15),
-    ano INTEGER,
-    custo_producao NUMBER(14, 2)
-);
-/
-*/
-
 -- Veiculo --
 CREATE OR REPLACE TYPE tp_veiculo AS OBJECT (
     n_chassi       VARCHAR2(17),
-  --custo_veiculo  tp_custo_veiculo,
     modelo         VARCHAR2(30),
     cor            VARCHAR2(15),
     ano            INTEGER,
     custo_producao NUMBER(14, 2),
 
-    -- Metodos --
+    -- METODOS --
     CONSTRUCTOR FUNCTION tp_veiculo(nc VARCHAR2,
                                     m  VARCHAR2,
                                     c  VARCHAR2,
@@ -254,7 +214,7 @@ CREATE OR REPLACE TYPE tp_veiculo AS OBJECT (
 );
 /
 
---OK
+-- Body Veiculo --
 CREATE OR REPLACE TYPE BODY tp_veiculo AS
     CONSTRUCTOR FUNCTION tp_veiculo(nc VARCHAR2,
                                     m  VARCHAR2,
@@ -280,36 +240,25 @@ CREATE OR REPLACE TYPE tp_telefone_revendedora AS OBJECT (
 );
 /
 
--- Telefone revendedora VARRAY --
-CREATE OR REPLACE TYPE tp_telefone_revendedora_array AS VARRAY(4) OF tp_telefone_revendedora;
--- revendedora tem 4 telefones
-/
-
 -- Revendedora --
 CREATE OR REPLACE TYPE tp_revendedora AS OBJECT (
-    cnpj     VARCHAR2(14),
-    telefone tp_telefone_revendedora_array,
+    cnpj VARCHAR2(14)
 
     -- Metodos --
-    CONSTRUCTOR FUNCTION tp_revendedora(c VARCHAR2,
-                                        t tp_telefone_revendedora_array) RETURN SELF AS RESULT
 );
 /
 
-CREATE OR REPLACE TYPE BODY tp_revendedora AS
-    CONSTRUCTOR FUNCTION tp_revendedora(c VARCHAR2,
-                                        t tp_telefone_revendedora_array) RETURN SELF AS RESULT IS
-    BEGIN
-        cnpj     := c;
-        telefone := t;
-        RETURN;
-    END;
-END;
+-- Telefone revendedora NESTED TABLE
+CREATE OR REPLACE TYPE tp_lista_telefone_revendedora AS TABLE OF tp_telefone_revendedora;
+/
+
+-- Nested Table em revendedora --
+ALTER TYPE tp_revendedora ADD ATTRIBUTE (lista_telefone tp_lista_telefone_revendedora);
 /
 
 --PECA----------------------------------------------------------------------------------------------------
 
--- Peca --
+-- Peça --
 CREATE OR REPLACE TYPE tp_peca AS OBJECT (
     id                    INTEGER,
     categoria             VARCHAR(1),
@@ -317,7 +266,7 @@ CREATE OR REPLACE TYPE tp_peca AS OBJECT (
     veiculo_recebedor REF tp_veiculo,
     data_inspecao_        DATE,
 
-    -- Metodos --
+    -- METODOS --
     CONSTRUCTOR FUNCTION tp_peca(i      INTEGER,
                                  c      VARCHAR2,
                                  mi REF tp_maquina_controle_qualidade,
@@ -326,6 +275,7 @@ CREATE OR REPLACE TYPE tp_peca AS OBJECT (
 );
 /
 
+-- Body Peça --
 CREATE OR REPLACE TYPE BODY tp_peca AS
     CONSTRUCTOR FUNCTION tp_peca(i      INTEGER,
                                  c      VARCHAR2,
@@ -345,20 +295,20 @@ END;
 
 --HISTORICO MANUTENCAO----------------------------------------------------------------------------------------------------
 
--- Historico_manutencao -- (Verificar se a referência de uma entidade fraca é assim msm)
+-- Historico Manutenção --
 CREATE OR REPLACE TYPE tp_historico_manutencao AS OBJECT (
     maquina REF tp_maquina,
     data_       DATE,
     valor       NUMBER(9, 2),
 
-    -- Metodos --
+    -- METODOS --
     CONSTRUCTOR FUNCTION tp_historico_manutencao(m REF tp_maquina,
                                                  d     DATE,
-                                                 v     NUMBER) RETURN SELF AS RESULT,
+                                                 v     NUMBER) RETURN SELF AS RESULT
 );
 /
 
--- VER ERRO DEPOIS
+-- Body Historico Manutenção --
 CREATE OR REPLACE TYPE BODY tp_historico_manutencao AS
     CONSTRUCTOR FUNCTION tp_historico_manutencao(m REF tp_maquina,
                                                  d     DATE,
@@ -386,6 +336,7 @@ CREATE OR REPLACE TYPE tp_venda AS OBJECT (
 ) NOT FINAL;
 /
 
+-- Body Venda --
 CREATE OR REPLACE TYPE BODY tp_venda AS
     CONSTRUCTOR FUNCTION tp_venda(r REF tp_revendedora,
                                   f REF tp_funcionario,
@@ -401,7 +352,7 @@ END;
 
 --PRODUZIR----------------------------------------------------------------------------------------------------
 
--- Produzir -- (Entidade associativa)
+-- Produção -- (Entidade associativa)
 CREATE OR REPLACE TYPE tp_producao AS OBJECT (
     maquina_montagem REF tp_maquina_montagem,
     veiculo          REF tp_veiculo,
@@ -413,7 +364,7 @@ CREATE OR REPLACE TYPE tp_producao AS OBJECT (
 );
 /
 
---VER O ERRO DEPOIS
+-- Body Produção --
 CREATE OR REPLACE TYPE BODY tp_producao AS
     CONSTRUCTOR FUNCTION tp_producao(mm REF tp_maquina_montagem,
                                      v  REF tp_veiculo,
