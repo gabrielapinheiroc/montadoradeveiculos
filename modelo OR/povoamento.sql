@@ -156,8 +156,8 @@ INSERT INTO tb_veiculo VALUES (
 INSERT INTO tb_peca VALUES (
     1,
     'A',
-    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = '001'),
-    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = '12345678901234567'),
+    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = 'M001'),
+    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = 'IJKL3456789123456'),
     TO_DATE('2022-03-20', 'YYYY-MM-DD')
 );
 /
@@ -165,8 +165,8 @@ INSERT INTO tb_peca VALUES (
 INSERT INTO tb_peca VALUES (
     2,
     'B',
-    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = '002'),
-    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = '23456789012345678'),
+    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = 'M002'),
+    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = 'EFGH2345678912345'),
     TO_DATE('2022-03-21', 'YYYY-MM-DD')
 );
 /
@@ -174,8 +174,8 @@ INSERT INTO tb_peca VALUES (
 INSERT INTO tb_peca VALUES (
     3,
     'C',
-    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = '003'),
-    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = '34567890123456789'),
+    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = 'M003'),
+    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = 'ABCD1234567891234'),
     TO_DATE('2022-03-22', 'YYYY-MM-DD')
 );
 /
