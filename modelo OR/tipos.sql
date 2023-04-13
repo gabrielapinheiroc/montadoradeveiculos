@@ -56,7 +56,7 @@ CREATE OR REPLACE TYPE BODY tp_funcionario AS
         desconto NUMBER;
     BEGIN
         desconto := percentual / 100;
-        RETURN salario * (1 - bonus);
+        RETURN salario * (1 - desconto);
     END;
 
     MAP MEMBER FUNCTION get_salario_anual RETURN NUMBER IS
@@ -97,7 +97,7 @@ CREATE OR REPLACE TYPE BODY tp_maquina AS
 
     ORDER MEMBER FUNCTION mesmo_fabricante(m tp_maquina) RETURN INTEGER IS
     BEGIN
-        IF fabricante == m.fabricante THEN
+        IF fabricante = m.fabricante THEN
             RETURN 1;
         ELSE
             RETURN 0;
@@ -315,12 +315,12 @@ END;
 
 -- Historico Manutenção --
 CREATE OR REPLACE TYPE tp_historico_manutencao AS OBJECT (
-    maquina REF tp_maquina,
+    maquina REF tp_maquina_controle_qualidade,
     data_       DATE,
     valor       NUMBER(9, 2),
 
     -- METODOS --
-    CONSTRUCTOR FUNCTION tp_historico_manutencao(m REF tp_maquina,
+    CONSTRUCTOR FUNCTION tp_historico_manutencao(m REF tp_maquina_controle_qualidade,
                                                  d     DATE,
                                                  v     NUMBER) RETURN SELF AS RESULT,
 
@@ -330,7 +330,7 @@ CREATE OR REPLACE TYPE tp_historico_manutencao AS OBJECT (
 
 -- Body Historico Manutenção --
 CREATE OR REPLACE TYPE BODY tp_historico_manutencao AS
-    CONSTRUCTOR FUNCTION tp_historico_manutencao(m REF tp_maquina,
+    CONSTRUCTOR FUNCTION tp_historico_manutencao(m REF tp_maquina_controle_qualidade,
                                                  d     DATE,
                                                  v     NUMBER) RETURN SELF AS RESULT IS
     BEGIN
@@ -342,7 +342,7 @@ CREATE OR REPLACE TYPE BODY tp_historico_manutencao AS
 
     MEMBER PROCEDURE exibir_informacoes(SELF tp_historico_manutencao) IS
     BEGIN
-        DBMS_OUTPUT.PUT_LINE('Máquina: ' || DEREF(maquina).get_codigo_identificacao);
+        --DBMS_OUTPUT.PUT_LINE('Máquina: ' || DEREF(maquina).get_codigo_identificacao);
         DBMS_OUTPUT.PUT_LINE('Data:    ' || data_);
         DBMS_OUTPUT.PUT_LINE('Valor:   ' || valor);
     END;
