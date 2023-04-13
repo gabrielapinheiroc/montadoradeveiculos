@@ -51,3 +51,13 @@ BEGIN
     h.exibir_informacoes();
 END;
 /
+
+-- consultar os telefones de um funcionário (consulta à VARRAY)
+SELECT T.telefone FROM tb_funcionario F, table(F.telefone) T WHERE F.CPF = '22222222222';
+/
+
+-- consultar informações de uma peça (consulta com DEREF)
+SELECT P.categoria, DEREF(P.maquina_inspetora).codigo_identificacao as cod, DEREF(P.veiculo_recebedor).n_chassi as chassi, P.data_inspecao_ 
+    FROM tb_peca P
+    WHERE P.id = 3
+/
