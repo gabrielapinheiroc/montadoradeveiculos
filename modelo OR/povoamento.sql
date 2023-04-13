@@ -93,6 +93,16 @@ INSERT INTO tb_maquina_controle_qualidade VALUES (
 );
 /
 
+INSERT INTO tb_maquina_controle_qualidade VALUES (
+    'M003',
+    'Modelo C',
+    'Fabricante X',
+    TO_DATE('2020-10-01', 'YYYY-MM-DD'),
+    'P',
+    'L'
+);
+/
+
 --tb_revendedora----------------------------------------------------------------------------------------------------
 
 INSERT INTO tb_revendedora VALUES (
