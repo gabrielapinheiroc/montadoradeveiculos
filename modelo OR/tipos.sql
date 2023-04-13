@@ -342,7 +342,7 @@ CREATE OR REPLACE TYPE BODY tp_historico_manutencao AS
 
     MEMBER PROCEDURE exibir_informacoes(SELF tp_historico_manutencao) IS
     BEGIN
-        DBMS_OUTPUT.PUT_LINE('Máquina: ' || DEREF(maquina).get_codigo_identificacao);
+        --DBMS_OUTPUT.PUT_LINE('Máquina: ' || DEREF(maquina).get_codigo_identificacao);
         DBMS_OUTPUT.PUT_LINE('Data:    ' || data_);
         DBMS_OUTPUT.PUT_LINE('Valor:   ' || valor);
     END;

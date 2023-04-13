@@ -42,3 +42,12 @@ BEGIN
 	dbms_output.put_line('Booleana comparação fabricantes m1 e m3: ' ||bool_fab2);
 END;
 /
+
+-- consultar as informação de um histórico de manutenção
+DECLARE
+    h tp_historico_manutencao;
+BEGIN
+    SELECT VALUE(H) INTO h FROM tb_historico_manutencao H WHERE H.maquina.codigo_identificacao = 'M001';
+    h.exibir_informacoes();
+END;
+/
