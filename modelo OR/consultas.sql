@@ -1,3 +1,4 @@
+--- TESTE FUNÇÕES --
 -- consultar o salário líquido e o saláro bruto anual de um funcionário
 DECLARE
     f tp_funcionario;
@@ -51,3 +52,8 @@ BEGIN
     h.exibir_informacoes();
 END;
 /
+
+SELECT R.cnpj, T.telefone
+FROM tb_revendedora R, TABLE(R.lista_telefone) T
+WHERE R.cnpj LIKE '0%'
+
