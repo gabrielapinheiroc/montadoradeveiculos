@@ -57,13 +57,29 @@ END;
 SELECT R.cnpj, T.telefone
 FROM tb_revendedora R, TABLE(R.lista_telefone) T
 WHERE R.cnpj LIKE '0%'
+/
 
 -- consultar os telefones de um funcionário (consulta à VARRAY)
 SELECT T.telefone FROM tb_funcionario F, table(F.telefone) T WHERE F.CPF = '22222222222';
 /
 
 -- consultar informações de uma peça (consulta com DEREF)
-SELECT P.categoria, DEREF(P.maquina_inspetora).codigo_identificacao as cod, DEREF(P.veiculo_recebedor).n_chassi as chassi, P.data_inspecao_ 
+SELECT DEREF(P.maquina_inspetora).codigo_identificacao as cod_maquina, P.categoria as categoria_peca, DEREF(P.veiculo_recebedor).n_chassi as chassi_veiculo, P.data_inspecao_ 
     FROM tb_peca P
     WHERE P.id = 3
 /
+
+-- consultar informações de um veículo
+SELECT *
+    FROM tb_veiculo V
+    WHERE V.n_chassi = 'ABCD1234567891234'
+/
+
+-- consultar informações das máquinas de controle de qualidade em que o valor 
+-- de sua manutenção é superior à média dos valores de todas as manutenções
+SELECT *
+    FROM tb_maquina_controle_qualidade M
+	WHERE codigo_identificacao IN (SELECT DEREF(H.maquina).codigo_identificacao as cod 
+                                  FROM tb_historico_manutencao H
+                                  WHERE H.valor > (SELECT AVG(valor)
+                                                   FROM tb_historico_manutencao))
