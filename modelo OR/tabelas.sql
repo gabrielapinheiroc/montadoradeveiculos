@@ -39,10 +39,6 @@ CREATE TABLE tb_revendedora OF tp_revendedora (
 ) NESTED TABLE lista_telefone STORE AS telefones_revendedora;
 /
 
--- Tabela de produção --
-CREATE TABLE tb_producao OF tp_producao;
-/
-
 -- Tabela de veículos --
 CREATE TABLE tb_veiculo OF tp_veiculo (
     n_chassi PRIMARY KEY,
@@ -72,5 +68,17 @@ CREATE TABLE tb_historico_manutencao OF tp_historico_manutencao (
 /
 
 -- Tabela de venda --
-CREATE TABLE tb_venda OF tp_venda;
+CREATE TABLE tb_venda OF tp_venda(
+    revendedora WITH ROWID REFERENCES tb_revendedora NOT NULL,
+    funcionario WITH ROWID REFERENCES tb_funcionario NOT NULL,
+    veiculo WITH ROWID REFERENCES tb_veiculo NOT NULL
+);
+/
+
+-- Tabela de produção --
+CREATE TABLE tb_producao OF tp_producao(
+	maquina_montagem WITH ROWID REFERENCES tb_maquina_montagem NOT NULL,
+    veiculo WITH ROWID REFERENCES tb_veiculo NOT NULL,
+    funcionario WITH ROWID REFERENCES tb_funcionario
+);
 /

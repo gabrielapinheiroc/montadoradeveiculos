@@ -4,7 +4,7 @@ INSERT INTO tb_funcionario VALUES (
     '11111111111',
     'João',
     'Silva',
-    3000.00,
+    8000.00,
     'Gerente',
     tp_telefone_funcionario_array(
         tp_telefone_funcionario('(11)111111111'),
@@ -39,10 +39,23 @@ INSERT INTO tb_funcionario VALUES (
 );
 /
 
+INSERT INTO tb_funcionario VALUES (
+    '44444444444',
+    'Ruy',
+    'Silva',
+    5500.00,
+    'Operador de Maquina',
+    tp_telefone_funcionario_array(
+        tp_telefone_funcionario('(77)777777777'),
+        tp_telefone_funcionario('(88)888888888')),
+    (SELECT REF(f) FROM tb_funcionario f WHERE f.cpf = '22222222222')
+);
+/
+
 --tb_maquina_montagem----------------------------------------------------------------------------------------------------
 
 INSERT INTO tb_maquina_montagem VALUES (
-    'M001',
+    'M100',
     'Modelo 1',
     'Fabricante A',
     TO_DATE('2022-03-25', 'YYYY-MM-DD'),
@@ -52,7 +65,7 @@ INSERT INTO tb_maquina_montagem VALUES (
 /
 
 INSERT INTO tb_maquina_montagem VALUES (
-    'M002',
+    'M200',
     'Modelo 2',
     'Fabricante B',
     TO_DATE('2022-02-15', 'YYYY-MM-DD'),
@@ -62,7 +75,7 @@ INSERT INTO tb_maquina_montagem VALUES (
 /
 
 INSERT INTO tb_maquina_montagem VALUES (
-    'M003',
+    'M300',
     'Modelo 3',
     'Fabricante C',
     TO_DATE('2022-01-10', 'YYYY-MM-DD'),
@@ -160,7 +173,44 @@ INSERT INTO tb_veiculo VALUES (
 );
 /
 
+INSERT INTO tb_veiculo VALUES (
+    'MNOP4567891234567',
+    'Fiesta',
+    'Azul',
+    2018,
+    28000.00
+);
+/
+
+INSERT INTO tb_veiculo VALUES (
+    'QRST5678912345678',
+    'Civic',
+    'Vermelho',
+    2017,
+    35000.00
+);
+/
+
+INSERT INTO tb_veiculo VALUES (
+    'UVWX6789123456789',
+    'Corolla',
+    'Prata',
+    2019,
+    40000.00
+);
+/
+
+INSERT INTO tb_veiculo VALUES (
+    'YZAB7891234567890',
+    'Renegade',
+    'Verde',
+    2016,
+    30000.00
+);
+/
+
 --tb_peca----------------------------------------------------------------------------------------------------
+-- (consulta com SELECT REF)
 
 INSERT INTO tb_peca VALUES (
     1,
@@ -204,3 +254,91 @@ INSERT INTO tb_historico_manutencao VALUES (
     1000.00
 );
 /
+
+--tb_venda----------------------------------------------------------------------------------------------------
+
+INSERT INTO tb_venda VALUES (
+    (SELECT REF(R) FROM tb_revendedora R WHERE R.cnpj = '01234567890123'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '22222222222'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'ABCD1234567891234')
+);
+
+INSERT INTO tb_venda VALUES (
+    (SELECT REF(R) FROM tb_revendedora R WHERE R.cnpj = '09876543210000'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '22222222222'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'EFGH2345678912345')
+);
+
+INSERT INTO tb_venda VALUES (
+    (SELECT REF(R) FROM tb_revendedora R WHERE R.cnpj = '01234567890123'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '33333333333'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'IJKL3456789123456')
+);
+
+INSERT INTO tb_venda VALUES (
+    (SELECT REF(R) FROM tb_revendedora R WHERE R.cnpj = '01234567890123'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '33333333333'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'MNOP4567891234567')
+);
+
+INSERT INTO tb_venda VALUES (
+    (SELECT REF(R) FROM tb_revendedora R WHERE R.cnpj = '09876543210000'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '22222222222'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'QRST5678912345678')
+);
+
+INSERT INTO tb_venda VALUES (
+    (SELECT REF(R) FROM tb_revendedora R WHERE R.cnpj = '09876543210000'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '33333333333'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'UVWX6789123456789')
+);
+
+INSERT INTO tb_venda VALUES (
+    (SELECT REF(R) FROM tb_revendedora R WHERE R.cnpj = '09876543210000'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '33333333333'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'YZAB7891234567890')
+);
+
+--tb_producao----------------------------------------------------------------------------------------------------
+
+INSERT INTO tb_producao VALUES (
+    (SELECT REF(M) FROM tb_maquina_montagem M WHERE M.codigo_identificacao = 'M100'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'YZAB7891234567890'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '33333333333')
+);
+
+INSERT INTO tb_producao VALUES (
+    (SELECT REF(M) FROM tb_maquina_montagem M WHERE M.codigo_identificacao = 'M100'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'UVWX6789123456789'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '44444444444')
+);
+
+INSERT INTO tb_producao VALUES (
+    (SELECT REF(M) FROM tb_maquina_montagem M WHERE M.codigo_identificacao = 'M200'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'QRST5678912345678'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '44444444444')
+);
+
+INSERT INTO tb_producao VALUES (
+    (SELECT REF(M) FROM tb_maquina_montagem M WHERE M.codigo_identificacao = 'M200'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'MNOP4567891234567'),
+    NULL
+);
+
+INSERT INTO tb_producao VALUES (
+    (SELECT REF(M) FROM tb_maquina_montagem M WHERE M.codigo_identificacao = 'M200'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'IJKL3456789123456'),
+    NULL
+);
+
+INSERT INTO tb_producao VALUES (
+    (SELECT REF(M) FROM tb_maquina_montagem M WHERE M.codigo_identificacao = 'M200'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'EFGH2345678912345'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '33333333333')
+);
+
+INSERT INTO tb_producao VALUES (
+    (SELECT REF(M) FROM tb_maquina_montagem M WHERE M.codigo_identificacao = 'M200'),
+    (SELECT REF(V) FROM tb_veiculo V WHERE V.n_chassi = 'ABCD1234567891234'),
+    (SELECT REF(F) FROM tb_funcionario F WHERE F.CPF = '44444444444')
+);
