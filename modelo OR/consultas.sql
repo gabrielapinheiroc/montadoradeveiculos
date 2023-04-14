@@ -97,3 +97,14 @@ FROM tb_peca p
 WHERE DEREF(p.veiculo_recebedor).n_chassi = 'EFGH2345678912345'
 GROUP BY DEREF(p.veiculo_recebedor).n_chassi, DEREF(p.veiculo_recebedor).modelo, DEREF(p.veiculo_recebedor).ano
 /
+
+-- consultar os dados de todos os veículos vendidos por
+--funcionários em que o cpf começa com 3
+SELECT DEREF(V.veiculo).n_chassi as n_chassi, 
+       DEREF(V.veiculo).modelo as modelo, 
+       DEREF(V.veiculo).cor as cor, 
+       DEREF(V.veiculo).ano as ano, 
+       DEREF(V.veiculo).custo_producao as custo_producao
+FROM tb_venda V
+WHERE DEREF(V.funcionario).cpf LIKE '3%'
+/
