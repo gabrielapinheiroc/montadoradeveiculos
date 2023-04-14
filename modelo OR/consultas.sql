@@ -17,7 +17,7 @@ END;
 DECLARE
     m tp_maquina_montagem ;
 BEGIN
-   SELECT VALUE(M) INTO m FROM tb_maquina_montagem M WHERE M.codigo_identificacao ='M001' ;
+   SELECT VALUE(M) INTO m FROM tb_maquina_montagem M WHERE M.codigo_identificacao ='M100' ;
     m.exibir_informacoes();
 END;
 /
@@ -63,10 +63,29 @@ WHERE R.cnpj LIKE '0%'
 SELECT T.telefone FROM tb_funcionario F, table(F.telefone) T WHERE F.CPF = '22222222222';
 /
 
+-- consultar o nome, sobrenome, a função e o salário dos funcionários cujos salários
+-- são maiores do que o menor salário de um funcionário que tem algum telefone com DDD 11
+-- (consulta a VARRAY)
+SELECT F.primeiro_nome AS nome, F.sobrenome, F.funcao, F.salario
+FROM tb_funcionario F
+WHERE F.salario > (
+	SELECT MIN(F2.salario)
+	FROM tb_funcionario F2, TABLE(F2.telefone) T
+	WHERE T.telefone LIKE ('(11)%')
+)
+/
+
 -- consultar informações de uma peça (consulta com SELECT DEREF)
 SELECT DEREF(P.maquina_inspetora).codigo_identificacao as cod_maquina, P.categoria as categoria_peca, DEREF(P.veiculo_recebedor).n_chassi as chassi_veiculo, P.data_inspecao_ 
     FROM tb_peca P
     WHERE P.id = 3
+/
+
+-- consultar a quantidade de peças inspecionadas por máquinas
+-- fabricadas a partir de 01/01/2022 (consulta com SELECT DEREF)
+SELECT COUNT(*) AS qtd_pecas_seguramente_inspecionadas
+FROM tb_peca P
+WHERE DEREF(P.maquina_inspetora).data_fabricacao >= TO_DATE('2022-01-01', 'YYYY-MM-DD')
 /
 
 -- consultar informações de um veículo
