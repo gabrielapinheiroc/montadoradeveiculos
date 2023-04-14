@@ -7,8 +7,8 @@ INSERT INTO tb_funcionario VALUES (
     3000.00,
     'Gerente',
     tp_telefone_funcionario_array(
-        tp_telefone_funcionario('111111111'),
-        tp_telefone_funcionario('222222222')),
+        tp_telefone_funcionario('(11)111111111'),
+        tp_telefone_funcionario('(22)222222222')),
     NULL
 );
 /
@@ -20,8 +20,8 @@ INSERT INTO tb_funcionario VALUES (
     4000.00,
     'Vendedor',
     tp_telefone_funcionario_array(
-        tp_telefone_funcionario('333333333'),
-        tp_telefone_funcionario('444444444')),
+        tp_telefone_funcionario('(33)333333333'),
+        tp_telefone_funcionario('(44)444444444')),
     (SELECT REF (f) FROM tb_funcionario f WHERE f.cpf = '11111111111')
 );
 /
@@ -33,8 +33,8 @@ INSERT INTO tb_funcionario VALUES (
     2500.00,
     'Auxiliar',
     tp_telefone_funcionario_array(
-        tp_telefone_funcionario('555555555'),
-        tp_telefone_funcionario('666666666')),
+        tp_telefone_funcionario('(55)555555555'),
+        tp_telefone_funcionario('(66)666666666')),
     (SELECT REF(f) FROM tb_funcionario f WHERE f.cpf = '22222222222')
 );
 /
@@ -108,8 +108,8 @@ INSERT INTO tb_maquina_controle_qualidade VALUES (
 INSERT INTO tb_revendedora VALUES (
     '01234567890123',
     tp_lista_telefone_revendedora(
-        tp_telefone_revendedora('555-1234'),
-        tp_telefone_revendedora('555-5678')
+        tp_telefone_revendedora('(81)995551234'),
+        tp_telefone_revendedora('(11)985555678')
     )
 );
 /
@@ -117,8 +117,17 @@ INSERT INTO tb_revendedora VALUES (
 INSERT INTO tb_revendedora VALUES (
     '12345678901234',
     tp_lista_telefone_revendedora(
-        tp_telefone_revendedora('666-2345'),
-        tp_telefone_revendedora('666-6789')
+        tp_telefone_revendedora('(11)946662345'),
+        tp_telefone_revendedora('(82)986666789')
+    )
+);
+/
+
+INSERT INTO tb_revendedora VALUES (
+    '09876543210000',
+    tp_lista_telefone_revendedora(
+        tp_telefone_revendedora('(83)965551234'),
+        tp_telefone_revendedora('(67)985555678')
     )
 );
 /
@@ -156,8 +165,8 @@ INSERT INTO tb_veiculo VALUES (
 INSERT INTO tb_peca VALUES (
     1,
     'A',
-    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = '001'),
-    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = '12345678901234567'),
+    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = 'M001'),
+    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = 'IJKL3456789123456'),
     TO_DATE('2022-03-20', 'YYYY-MM-DD')
 );
 /
@@ -165,8 +174,8 @@ INSERT INTO tb_peca VALUES (
 INSERT INTO tb_peca VALUES (
     2,
     'B',
-    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = '002'),
-    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = '23456789012345678'),
+    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = 'M002'),
+    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = 'EFGH2345678912345'),
     TO_DATE('2022-03-21', 'YYYY-MM-DD')
 );
 /
@@ -174,8 +183,8 @@ INSERT INTO tb_peca VALUES (
 INSERT INTO tb_peca VALUES (
     3,
     'C',
-    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = '003'),
-    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = '34567890123456789'),
+    (SELECT REF(mq) FROM tb_maquina_controle_qualidade mq WHERE codigo_identificacao = 'M003'),
+    (SELECT REF(v) FROM tb_veiculo v WHERE n_chassi = 'ABCD1234567891234'),
     TO_DATE('2022-03-22', 'YYYY-MM-DD')
 );
 /
