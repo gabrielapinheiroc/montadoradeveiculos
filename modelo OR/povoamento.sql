@@ -1,6 +1,19 @@
 --tb_funcionario----------------------------------------------------------------------------------------------------
 
 INSERT INTO tb_funcionario VALUES (
+    '00000000000',
+    'Silvio',
+    'Luiz',
+    3800.00,
+    'Vendedor',
+    tp_telefone_funcionario_array(
+        tp_telefone_funcionario('(11)000000000'),
+        tp_telefone_funcionario('(99)999999999')),
+    (SELECT REF (f) FROM tb_funcionario f WHERE f.cpf = '11111111111')
+);
+/
+
+INSERT INTO tb_funcionario VALUES (
     '11111111111',
     'João',
     'Silva',
