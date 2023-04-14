@@ -83,3 +83,14 @@ SELECT *
                                   FROM tb_historico_manutencao H
                                   WHERE H.valor > (SELECT AVG(valor)
                                                    FROM tb_historico_manutencao))
+						   
+--Consulta quais máquinas inspecionaram as peças de um carro e quando--
+SELECT categoria, DEREF (p.maquina_inspetora).codigo_identificacao AS Maquina_Inspetora, data_inspecao_
+FROM tb_peca p
+WHERE DEREF(p.veiculo_recebedor).n_chassi = 'EFGH2345678912345'
+
+--Consulta o número de máquinas que participaram da inspeção das peças de um carro--
+SELECT DEREF(p.veiculo_recebedor).n_chassi AS Numero_Chassi, DEREF(p.veiculo_recebedor).modelo AS Modelo, DEREF(p.veiculo_recebedor).ano AS Ano_do_Modelo , COUNT(*) AS N_de_Maquina_Inspetoras
+FROM tb_peca p
+WHERE DEREF(p.veiculo_recebedor).n_chassi = 'EFGH2345678912345'
+GROUP BY DEREF(p.veiculo_recebedor).n_chassi, DEREF(p.veiculo_recebedor).modelo, DEREF(p.veiculo_recebedor).ano
